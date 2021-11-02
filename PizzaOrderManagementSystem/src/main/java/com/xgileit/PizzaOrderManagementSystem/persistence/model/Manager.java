@@ -14,7 +14,6 @@ import java.util.UUID;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class Manager implements Serializable {
 
@@ -29,5 +28,14 @@ public class Manager implements Serializable {
     private List<Order> orders;
     //The admin should not register when he wants to access the website.
     private String employeeCode = UUID.randomUUID().toString();
+
+    public Manager(String username, String email, String password, String phone, String address)
+    {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.address = address;
+    }
 
 }

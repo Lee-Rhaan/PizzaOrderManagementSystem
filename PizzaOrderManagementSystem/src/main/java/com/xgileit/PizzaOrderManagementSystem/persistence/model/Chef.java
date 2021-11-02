@@ -29,4 +29,13 @@ public class Chef implements Serializable {
     private List<Order> orders;
     //The chef should not register when he wants to access the website.
     private String employeeCode = UUID.randomUUID().toString();
+
+    public Chef(String username, String email, String password, String phone, String address)
+    {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.address = address;
+    }
 }

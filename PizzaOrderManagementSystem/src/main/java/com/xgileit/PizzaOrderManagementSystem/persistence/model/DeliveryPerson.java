@@ -27,5 +27,15 @@ public class DeliveryPerson implements Serializable {
     private String phone;
     private String address;
     private List<Order> orders;
+    //The delivery person should not register when he wants to access the website.
     private String employeeCode = UUID.randomUUID().toString();
+
+    public DeliveryPerson(String username, String email, String password, String phone, String address)
+    {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.address = address;
+    }
 }

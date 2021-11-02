@@ -1,7 +1,7 @@
 package com.xgileit.PizzaOrderManagementSystem.infrastructure.enums;
 
 public enum OrderStatus {
-    PENDING("PENDING"), PREPARED("PREPARED"), DELIVERED("DELIVERED");
+    PENDING("PENDING"), TRANSFERRED("TRANSFERRED"), PREPARED("PREPARED"), DELIVERED("DELIVERED");
 
     private final String orderStatus;
 

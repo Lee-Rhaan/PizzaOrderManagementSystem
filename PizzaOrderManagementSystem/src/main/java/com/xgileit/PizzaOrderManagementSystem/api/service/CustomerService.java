@@ -38,8 +38,8 @@ public class CustomerService {
 
     public Customer login(String email, String password)
     {
-        return customerRepository.findByEmailAndPassword(email, password).orElseThrow(() ->
-                new CustomerNotRegisteredException("Customer with email: " + email + " not registered"));
+        return customerRepository.findCustomerByEmailAndPassword(email, password).orElseThrow(() ->
+                new CustomerNotRegisteredException("Customer with email: " + email + " and password: " + password + " not registered"));
     }
 
     public List<Menu> viewMenu()
