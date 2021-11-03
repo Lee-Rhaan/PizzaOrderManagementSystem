@@ -21,6 +21,10 @@ import java.util.UUID;
 import static com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.OrderStatus.DELIVERED;
 import static com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.OrderStatus.PENDING;
 
+/**
+ *
+ */
+
 @Service
 @RequiredArgsConstructor
 public class CustomerService {
@@ -30,34 +34,63 @@ public class CustomerService {
     private final OrderRepository orderRepository;
     private final ReviewRepository reviewRepository;
 
+    /**
+     *
+     * @param customer
+     * @return
+     */
     public Customer register(Customer customer)
     {
         customer.setCustomerCode(UUID.randomUUID().toString());
         return customerRepository.save(customer);
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public Customer login(Long id)
     {
         return customerRepository.findCustomerById(id).orElseThrow(() ->
                 new CustomerNotRegisteredException("Customer with id: " + id + " not registered"));
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Menu> viewMenu()
     {
         return menuRepository.findAll();
     }
 
+    /**
+     *
+     * @param order
+     * @return
+     */
     public Order createOrder(Order order)
     {
         order.setOrderStatus(OrderStatus.PENDING);
         return orderRepository.save(order);
     }
 
+    /**
+     *
+     * @param order
+     * @return
+     */
     public Order updateOrder(Order order)
     {
         return orderRepository.save(order);
     }
 
+    /**
+     *
+     * @param orderId
+     * @return
+     */
     @Transactional
     public String cancelOrder(Long orderId)
     {
@@ -65,12 +98,21 @@ public class CustomerService {
         return "Order canceled";
     }
 
+    /**
+     *
+     * @param review
+     * @return
+     */
     public Review submitReview(Review review)
     {
         return reviewRepository.save(review);
     }
 
-    public List<Order> listOfDeliveredOrders()
+    /**
+     *
+     * @return
+     */
+    public List<Order> listAllDeliveredOrders()
     {
         List<Order> deliveredOrders = new ArrayList<>();
 
@@ -85,7 +127,11 @@ public class CustomerService {
         return deliveredOrders;
     }
 
-    public List<Order> listOfPendingOrders()
+    /**
+     *
+     * @return
+     */
+    public List<Order> listAllPendingOrders()
     {
         List<Order> pendingOrders = new ArrayList<>();
 

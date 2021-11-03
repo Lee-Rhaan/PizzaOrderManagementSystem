@@ -119,7 +119,7 @@ public class ManagerController {
      *
      * @return
      */
-    @GetMapping("/list/order/pending")
+    @GetMapping("/all/pending/orders")
     public ResponseEntity<List<Order>> listAllPendingOrders()
     {
         List<Order> pendingOrders = managerService.listAllPendingOrders();

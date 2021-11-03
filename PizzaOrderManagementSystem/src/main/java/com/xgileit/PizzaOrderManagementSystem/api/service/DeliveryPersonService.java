@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 
 import static com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.OrderStatus.DELIVERED;
 
+/**
+ *
+ */
+
 @Service
 @RequiredArgsConstructor
 public class DeliveryPersonService {
@@ -17,12 +21,22 @@ public class DeliveryPersonService {
     private final DeliveryPersonRepository deliveryPersonRepository;
     private final OrderRepository orderRepository;
 
+    /**
+     *
+     * @param id
+     * @return
+     */
     public DeliveryPerson login(Long id)
     {
         return deliveryPersonRepository.findDeliveryPersonById(id).orElseThrow(() ->
                 new DeliveryPersonNotFoundException("Delivery Person with id: " + id + " not found"));
     }
 
+    /**
+     *
+     * @param order
+     * @return
+     */
     public Order deliverOrder(Order order)
     {
         order.setOrderStatus(DELIVERED);
