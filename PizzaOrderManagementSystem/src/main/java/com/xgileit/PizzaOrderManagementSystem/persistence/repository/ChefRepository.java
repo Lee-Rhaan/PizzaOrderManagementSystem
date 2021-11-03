@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface ChefRepository extends JpaRepository<Chef, Long> {
-    Optional<Chef> findChefByEmailAndPassword(String email, String password);
+    Optional<Chef> findChefById(Long id);
 }

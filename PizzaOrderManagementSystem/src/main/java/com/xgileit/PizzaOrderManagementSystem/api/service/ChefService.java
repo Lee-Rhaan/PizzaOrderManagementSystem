@@ -17,10 +17,10 @@ public class ChefService {
     private final ChefRepository chefRepository;
     private final OrderRepository orderRepository;
 
-    public Chef login(String email, String password)
+    public Chef login(Long id)
     {
-        return chefRepository.findChefByEmailAndPassword(email, password).orElseThrow(() ->
-                new ChefNotFoundException("Chef with email: " + email + " and password: " + password + " not found"));
+        return chefRepository.findChefById(id).orElseThrow(() ->
+                new ChefNotFoundException("Chef with id: " + id + " not found"));
     }
 
     public Order prepareOrder(Order order)

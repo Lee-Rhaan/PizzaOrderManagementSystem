@@ -36,10 +36,10 @@ public class CustomerService {
         return customerRepository.save(customer);
     }
 
-    public Customer login(String email, String password)
+    public Customer login(Long id)
     {
-        return customerRepository.findCustomerByEmailAndPassword(email, password).orElseThrow(() ->
-                new CustomerNotRegisteredException("Customer with email: " + email + " and password: " + password + " not registered"));
+        return customerRepository.findCustomerById(id).orElseThrow(() ->
+                new CustomerNotRegisteredException("Customer with id: " + id + " not registered"));
     }
 
     public List<Menu> viewMenu()

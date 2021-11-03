@@ -17,10 +17,10 @@ public class DeliveryPersonService {
     private final DeliveryPersonRepository deliveryPersonRepository;
     private final OrderRepository orderRepository;
 
-    public DeliveryPerson login(String email, String password)
+    public DeliveryPerson login(Long id)
     {
-        return deliveryPersonRepository.findDeliveryPersonByEmailAndPassword(email, password).orElseThrow(() ->
-                new DeliveryPersonNotFoundException("Delivery Person with email: " + email + " and password: " + password + " not found"));
+        return deliveryPersonRepository.findDeliveryPersonById(id).orElseThrow(() ->
+                new DeliveryPersonNotFoundException("Delivery Person with id: " + id + " not found"));
     }
 
     public Order deliverOrder(Order order)
