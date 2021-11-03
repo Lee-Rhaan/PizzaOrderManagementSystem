@@ -6,6 +6,10 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * This is the Review Entity class which will be mapped to the database.
+ * This entity will store all the reviews in this Pizza Order System.
+ */
 @Data
 @NoArgsConstructor
 @Entity
@@ -14,8 +18,10 @@ public class Review implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Integer rating; //out of 5
+    private Integer rating;
     private String feedback;
+
+    @Column(name = "customer_review")
     @ManyToOne
     private Customer customerReview;
 

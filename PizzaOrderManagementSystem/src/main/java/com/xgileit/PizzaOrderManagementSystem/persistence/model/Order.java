@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * This is the Order Entity class which will be mapped to the database.
+ * This entity will store all the orders in this Pizza Order System.
+ */
 @Data
 @NoArgsConstructor
 @Entity
@@ -16,14 +20,27 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(name = "pizza_amount")
     private String pizzaAmount;
+
+    @Column(name = "beverage_amount")
     private String beverageAmount;
+
+    @Column(name = "pizza_flavour")
     private String pizzaFlavour;
+
+    @Column(name = "pizza_size")
     private String pizzaSize;
+
     private String beverage;
+
+    @Column(name = "beverage_size")
     private String beverageSize;
+
+    @Column(name = "order_status")
     private OrderStatus orderStatus;
 
+    @Column(name = "customer_order")
     @ManyToOne
     private Customer customerOrder;
 

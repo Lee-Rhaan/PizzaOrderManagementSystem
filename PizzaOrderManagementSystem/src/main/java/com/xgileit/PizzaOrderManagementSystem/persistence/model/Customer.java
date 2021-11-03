@@ -7,6 +7,10 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * This is the Customer Entity class which will be mapped to the database.
+ * This entity will store all the customers in this Pizza Order System.
+ */
 @Data
 @NoArgsConstructor
 @Entity
@@ -20,7 +24,8 @@ public class Customer implements Serializable {
     private String password;
     private String phone;
     private String address;
-    @Column(name = "code")
+
+    @Column(name = "customer_code")
     private String customerCode = null;
 
     //mappedBy indicates that this side is the inverse side, and that the mapping is defined

@@ -3,14 +3,15 @@ package com.xgileit.PizzaOrderManagementSystem.persistence.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 import java.util.UUID;
 
+/**
+ * This is the DeliveryPerson Entity class which will be mapped to the database.
+ * This entity will store all the delivery people in this Pizza Order System.
+ */
+@Table(name = "delivery_person")
 @Data
 @NoArgsConstructor
 @Entity
@@ -24,8 +25,8 @@ public class DeliveryPerson implements Serializable {
     private String password;
     private String phone;
     private String address;
-   // private List<Order> orders;
-    //The delivery person should not register when he wants to access the website.
+
+    @Column(name = "employee_code")
     private String employeeCode = UUID.randomUUID().toString();
 
     public DeliveryPerson(String username, String email, String password, String phone, String address)
