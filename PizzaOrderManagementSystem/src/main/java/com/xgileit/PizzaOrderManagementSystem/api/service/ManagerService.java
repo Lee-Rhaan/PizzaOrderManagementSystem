@@ -14,13 +14,17 @@ import static com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.OrderS
 import static com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.OrderStatus.TRANSFERRED;
 
 /**
- *
+ * This is the Service class. Here I am implementing all the business logic for the manager.
  */
 
 @Service
 @RequiredArgsConstructor
 public class ManagerService {
 
+    /**
+     * Here I am injecting all these repositories with the @RequiredArgsConstructor in order to
+     * have access to all it's functionalities.
+     */
     private final ReviewRepository reviewRepository;
     private final ManagerRepository managerRepository;
     private final MenuRepository menuRepository;
@@ -30,9 +34,12 @@ public class ManagerService {
     private final CustomerRepository customerRepository;
 
     /**
+     * If a manager with the id being passed as an argument exists in the database, he/she gets
+     * logged in.
+     * If not, an exception gets thrown.
      *
-     * @param id
-     * @return
+     * @param id Long
+     * @return Logged in manager or exception
      */
     public Manager login(Long id)
     {
@@ -41,8 +48,7 @@ public class ManagerService {
     }
 
     /**
-     *
-     * @return
+     * @return List of products on menu
      */
     public List<Menu> viewMenu()
     {
@@ -50,9 +56,10 @@ public class ManagerService {
     }
 
     /**
+     * Menu gets created and saved in the database
      *
-     * @param menu
-     * @return
+     * @param menu object
+     * @return saved menu
      */
     public Menu createMenu(Menu menu)
     {
@@ -60,9 +67,10 @@ public class ManagerService {
     }
 
     /**
+     * Updates the properties of an existing menu in the database.
      *
-     * @param menu
-     * @return
+     * @param menu object
+     * @return updated menu
      */
     public Menu updateMenu(Menu menu)
     {
@@ -70,9 +78,11 @@ public class ManagerService {
     }
 
     /**
+     * Checks if a menu with a matching id exists in the database.
+     * If it exists, the menu will be removed.
      *
-     * @param id
-     * @return
+     * @param id Long
+     * @return String response
      */
     @Transactional
     public String deleteMenu(Long id)
@@ -82,9 +92,11 @@ public class ManagerService {
     }
 
     /**
+     * Sets the status of the order to "Transferred" if it exists in the database, and
+     * then replaces the old order with this updated version.
      *
-     * @param order
-     * @return
+     * @param order object
+     * @return updated order
      */
     public Order transferOrderToChef(Order order)
     {
@@ -93,9 +105,11 @@ public class ManagerService {
     }
 
     /**
+     * This method will delete an order object from the database by using it's id as
+     * a reference.
      *
-     * @param orderId
-     * @return
+     * @param orderId Long
+     * @return String response
      */
     @Transactional
     public String cancelOrder(Long orderId)
@@ -105,9 +119,10 @@ public class ManagerService {
     }
 
     /**
+     * Updates the properties of an existing order in the database.
      *
-     * @param order
-     * @return
+     * @param order object
+     * @return updated order
      */
     public Order updateOrder(Order order)
     {
@@ -115,8 +130,7 @@ public class ManagerService {
     }
 
     /**
-     *
-     * @return
+     * @return List of all orders stored in the database with pending status
      */
     public List<Order> listAllPendingOrders()
     {
@@ -134,8 +148,7 @@ public class ManagerService {
     }
 
     /**
-     *
-     * @return
+     * @return List of all orders stored in the database
      */
     public List<Order> listAllOrders()
     {
@@ -144,7 +157,7 @@ public class ManagerService {
 
     /**
      *
-     * @return
+     * @return List of all reviews stored in the database
      */
     public List<Review> listAllReviews()
     {
@@ -152,9 +165,11 @@ public class ManagerService {
     }
 
     /**
+     * This method will find a review by it's id in the database.
      *
-     * @param reviewId
-     * @return
+     * @param reviewId Long
+     * @return review object if review exists in database or Error message if review
+     *         with specified id does not exist in database
      */
     public Review findReviewById(Long reviewId)
     {
@@ -163,9 +178,11 @@ public class ManagerService {
     }
 
     /**
+     * This method will find an order by it's id in the database.
      *
-     * @param id
-     * @return
+     * @param id Long
+     * @return order object if order exists in database or Error message if order
+     *        with specified id does not exist in database
      */
     public Order findOrderById(Long id)
     {
@@ -174,9 +191,11 @@ public class ManagerService {
     }
 
     /**
+     * This method will find a menu by it's id in the database.
      *
-     * @param id
-     * @return
+     * @param id Long
+     * @return menu object if menu exists in database or Error message if menu
+     *         with specified id does not exist in database
      */
     public Menu findMenuById(Long id)
     {
@@ -185,8 +204,7 @@ public class ManagerService {
     }
 
     /**
-     *
-     * @return
+     * @return List of all chefs stored in database
      */
     public List<Chef> listAllChefs()
     {
@@ -194,8 +212,7 @@ public class ManagerService {
     }
 
     /**
-     *
-     * @return
+     * @return List of all delivery people stored in database
      */
     public List<DeliveryPerson> listAllDeliveryPeople()
     {
@@ -203,8 +220,7 @@ public class ManagerService {
     }
 
     /**
-     *
-     * @return
+     * @return List of all customers stored in database
      */
     public List<Customer> listAllCustomers()
     {
@@ -212,8 +228,7 @@ public class ManagerService {
     }
 
     /**
-     *
-     * @return
+     * @return List of all managers stored in database
      */
     public List<Manager> listAllManagers()
     {
@@ -221,9 +236,11 @@ public class ManagerService {
     }
 
     /**
+     * This method will find a customer by it's id in the database.
      *
-     * @param id
-     * @return
+     * @param id Long
+     * @return customer object if customer exists in database or Error message if customer
+     *         with specified id does not exist in database
      */
     public Customer findCustomer(Long id)
     {
@@ -232,9 +249,11 @@ public class ManagerService {
     }
 
     /**
+     * This method will find a chef by it's id in the database.
      *
-     * @param id
-     * @return
+     * @param id Long
+     * @return chef object if chef exists in database or Error message if chef
+     *        with specified id does not exist in database
      */
     public Chef findChef(Long id)
     {
@@ -243,9 +262,11 @@ public class ManagerService {
     }
 
     /**
+     * This method will find a delivery person by it's id in the database.
      *
-     * @param id
-     * @return
+     * @param id Long
+     * @return delivery person object if delivery person exists in database or Error message if
+     *         delivery person with specified id does not exist in database
      */
     public DeliveryPerson findDeliveryPerson(Long id)
     {

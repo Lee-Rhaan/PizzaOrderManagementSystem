@@ -145,7 +145,7 @@ public class ManagerController {
 
     /**
      * How to access this method: "/api/v1/admin/all/pending/orders"
-     * @return List of all orders in the database with pending status
+     * @return List of all orders stored in the database with pending status
      */
     @GetMapping("/all/pending/orders")
     public ResponseEntity<List<Order>> listAllPendingOrders()
@@ -156,7 +156,7 @@ public class ManagerController {
 
     /**
      * How to access this method: "/api/v1/admin/all/orders"
-     * @return list of all orders in the database
+     * @return list of all orders stored in the database
      */
     @GetMapping("/all/orders")
     public ResponseEntity<List<Order>> listAllOrders()
@@ -210,7 +210,7 @@ public class ManagerController {
      * How to access this method: "/api/v1/admin/find/menu/{id}"
      * This method will find a menu by it's id in the database.
      *
-     * @param id
+     * @param id Long
      * @return menu object if menu exists in database or Error message if menu
      *         with specified id does not exist in database
      */

@@ -22,22 +22,27 @@ import static com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.OrderS
 import static com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.OrderStatus.PENDING;
 
 /**
- *
+ * This is the Service class. Here I am implementing all the business logic for the customer.
  */
 
 @Service
 @RequiredArgsConstructor
 public class CustomerService {
 
+    /**
+     * Here I am injecting all these repositories with the @RequiredArgsConstructor in order to
+     * have access to all it's functionalities.
+     */
     private final CustomerRepository customerRepository;
     private final MenuRepository menuRepository;
     private final OrderRepository orderRepository;
     private final ReviewRepository reviewRepository;
 
     /**
+     * This method registers and adds a new customer to the database.
      *
-     * @param customer
-     * @return
+     * @param customer object
+     * @return registered customer if request were successful
      */
     public Customer register(Customer customer)
     {
@@ -46,9 +51,12 @@ public class CustomerService {
     }
 
     /**
+     * If a customer with the id being passed as an argument exists in the database, he/she gets
+     * logged in.
+     * If not, an exception gets thrown.
      *
-     * @param id
-     * @return
+     * @param id Long
+     * @return Logged in customer or exception
      */
     public Customer login(Long id)
     {
@@ -57,8 +65,7 @@ public class CustomerService {
     }
 
     /**
-     *
-     * @return
+     * @return List of products on menu
      */
     public List<Menu> viewMenu()
     {
@@ -66,9 +73,10 @@ public class CustomerService {
     }
 
     /**
+     * Order gets created and stored in database
      *
-     * @param order
-     * @return
+     * @param order object
+     * @return saved order
      */
     public Order createOrder(Order order)
     {
@@ -77,9 +85,11 @@ public class CustomerService {
     }
 
     /**
+     * This method will replace the old order object with this newly updated order object
+     * if the order object exists in the database.
      *
-     * @param order
-     * @return
+     * @param order object
+     * @return updated order
      */
     public Order updateOrder(Order order)
     {
@@ -87,9 +97,11 @@ public class CustomerService {
     }
 
     /**
+     * This method will delete an order object from the database by using it's id as
+     * a reference.
      *
-     * @param orderId
-     * @return
+     * @param orderId Long
+     * @return String response
      */
     @Transactional
     public String cancelOrder(Long orderId)
@@ -99,9 +111,10 @@ public class CustomerService {
     }
 
     /**
+     * Review gets created and saved in database
      *
-     * @param review
-     * @return
+     * @param review object
+     * @return saved review
      */
     public Review submitReview(Review review)
     {
@@ -109,8 +122,7 @@ public class CustomerService {
     }
 
     /**
-     *
-     * @return
+     * @return List of all orders with delivered status stored in database
      */
     public List<Order> listAllDeliveredOrders()
     {
@@ -128,8 +140,7 @@ public class CustomerService {
     }
 
     /**
-     *
-     * @return
+     * @return List of all orders with pending status stored in database
      */
     public List<Order> listAllPendingOrders()
     {
