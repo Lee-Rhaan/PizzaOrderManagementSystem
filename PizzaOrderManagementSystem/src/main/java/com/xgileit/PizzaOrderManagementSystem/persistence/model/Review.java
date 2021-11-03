@@ -21,7 +21,6 @@ public class Review implements Serializable {
     private Integer rating;
     private String feedback;
 
-    @Column(name = "customer_review")
     @ManyToOne
     private Customer customerReview;
 

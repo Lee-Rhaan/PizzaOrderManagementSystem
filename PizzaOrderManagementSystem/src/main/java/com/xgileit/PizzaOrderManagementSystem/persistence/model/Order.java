@@ -40,7 +40,6 @@ public class Order implements Serializable {
     @Column(name = "order_status")
     private OrderStatus orderStatus;
 
-    @Column(name = "customer_order")
     @ManyToOne
     private Customer customerOrder;
 
