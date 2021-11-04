@@ -1,5 +1,6 @@
 package com.xgileit.PizzaOrderManagementSystem.persistence.model;
 
+import com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.Status;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -24,9 +25,9 @@ public class Customer implements Serializable {
     private String password;
     private String phone;
     private String address;
-
     @Column(name = "customer_code")
     private String customerCode = null;
+    private Status status;
 
     //mappedBy indicates that this side is the inverse side, and that the mapping is defined
     //by the attribute customerOrder at the other side of the association.

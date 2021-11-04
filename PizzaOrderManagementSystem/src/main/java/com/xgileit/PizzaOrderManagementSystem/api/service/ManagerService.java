@@ -1,5 +1,6 @@
 package com.xgileit.PizzaOrderManagementSystem.api.service;
 
+import com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.Status;
 import com.xgileit.PizzaOrderManagementSystem.infrastructure.exceptions.*;
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.*;
 import com.xgileit.PizzaOrderManagementSystem.persistence.repository.*;
@@ -43,8 +44,12 @@ public class ManagerService {
      */
     public Manager login(Long id)
     {
-        return managerRepository.findManagerById(id).orElseThrow(() ->
+        Manager manager = managerRepository.findManagerById(id).orElseThrow(() ->
                 new ManagerNotFoundException("Manager with id: " + id + " not found"));
+
+        manager.setStatus(Status.LOGGED_IN);
+
+        return manager;
     }
 
     /**

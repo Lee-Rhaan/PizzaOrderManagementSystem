@@ -39,7 +39,6 @@ public class Order implements Serializable {
     private String beverageSize;
 
     @Column(name = "order_status")
-    @Enumerated
     private OrderStatus orderStatus;
 
     @ManyToOne

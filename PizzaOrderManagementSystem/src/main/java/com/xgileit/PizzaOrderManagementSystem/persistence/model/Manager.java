@@ -1,5 +1,6 @@
 package com.xgileit.PizzaOrderManagementSystem.persistence.model;
 
+import com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.Status;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -24,9 +25,9 @@ public class Manager implements Serializable {
     private String password;
     private String phone;
     private String address;
-
     @Column(name = "employee_code")
     private String employeeCode = UUID.randomUUID().toString();
+    private Status status;
 
     public Manager(String username, String email, String password, String phone, String address)
     {
