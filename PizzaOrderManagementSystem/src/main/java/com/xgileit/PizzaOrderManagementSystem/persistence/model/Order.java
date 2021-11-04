@@ -11,6 +11,7 @@ import java.io.Serializable;
  * This is the Order Entity class which will be mapped to the database.
  * This entity will store all the orders in this Pizza Order System.
  */
+@Table(name = "orders")
 @Data
 @NoArgsConstructor
 @Entity
@@ -38,6 +39,7 @@ public class Order implements Serializable {
     private String beverageSize;
 
     @Column(name = "order_status")
+    @Enumerated
     private OrderStatus orderStatus;
 
     @ManyToOne
@@ -53,4 +55,5 @@ public class Order implements Serializable {
         this.beverage = beverage;
         this.beverageSize = beverageSize;
     }
+
 }
