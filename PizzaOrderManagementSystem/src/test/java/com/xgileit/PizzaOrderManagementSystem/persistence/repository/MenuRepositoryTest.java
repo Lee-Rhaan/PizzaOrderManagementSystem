@@ -1,5 +1,6 @@
 package com.xgileit.PizzaOrderManagementSystem.persistence.repository;
 
+import com.xgileit.PizzaOrderManagementSystem.infrastructure.exceptions.MenuNotFoundException;
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.Menu;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DataJpaTest
 class MenuRepositoryTest {
@@ -26,7 +29,7 @@ class MenuRepositoryTest {
     Menu menu = new Menu("Vegan", "Large", "Water", "Large");
 
     @Test
-    void deleteMenuById() {
+    void deleteMenuByIdTest() {
         //Given
         menuRepository.save(menu);
 
@@ -39,7 +42,7 @@ class MenuRepositoryTest {
     }
 
     @Test
-    void findMenuById() {
+    void findMenuByIdTestSuccessful() {
         //Given
         menuRepository.save(menu);
 
@@ -48,5 +51,17 @@ class MenuRepositoryTest {
 
         //Then
         assertThat(expectedValue).isEqualTo(Optional.of(menu));
+    }
+
+    @Test
+    void findMenuByIdTestNotSuccessful(){
+        String message = "Menu not found";
+
+        //Given
+        Exception expected = assertThrows(MenuNotFoundException.class,
+                () -> {throw new MenuNotFoundException(message);});
+
+        //Then
+        assertEquals(message, expected.getMessage());
     }
 }

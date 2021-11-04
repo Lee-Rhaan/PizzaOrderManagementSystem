@@ -1,5 +1,6 @@
 package com.xgileit.PizzaOrderManagementSystem.persistence.repository;
 
+import com.xgileit.PizzaOrderManagementSystem.infrastructure.exceptions.CustomerNotFoundException;
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.Customer;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DataJpaTest
 class CustomerRepositoryTest {
@@ -27,7 +30,7 @@ class CustomerRepositoryTest {
             "qwerty", "10111", "CPT");
 
     @Test
-    void findCustomerById() {
+    void findCustomerByIdTestSuccessful() {
         //Given
         customerRepository.save(customer);
 
@@ -36,5 +39,17 @@ class CustomerRepositoryTest {
 
         //Then
         assertThat(expectedValue).isEqualTo(Optional.of(customer));
+    }
+
+    @Test
+    void findCustomerByIdTestNotSuccessful(){
+        String message = "Customer not found";
+
+        //Given
+        Exception expected = assertThrows(CustomerNotFoundException.class,
+                () -> {throw new CustomerNotFoundException(message);});
+
+        //Then
+        assertEquals(message, expected.getMessage());
     }
 }

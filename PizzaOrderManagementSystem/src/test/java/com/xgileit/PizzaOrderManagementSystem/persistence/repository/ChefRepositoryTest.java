@@ -1,5 +1,6 @@
 package com.xgileit.PizzaOrderManagementSystem.persistence.repository;
 
+import com.xgileit.PizzaOrderManagementSystem.infrastructure.exceptions.ChefNotFoundException;
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.Chef;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DataJpaTest
 class ChefRepositoryTest {
@@ -39,4 +42,16 @@ class ChefRepositoryTest {
     }
 
     //need to test the unsuccessful side of this method too
+    @Test
+    void findChefByIdTestNotSuccessful() {
+
+        String message = "Chef not found";
+
+        //Given
+        Exception expected = assertThrows(ChefNotFoundException.class,
+                () -> {throw new ChefNotFoundException(message);});
+
+        //Then
+        assertEquals(message, expected.getMessage());
+    }
 }

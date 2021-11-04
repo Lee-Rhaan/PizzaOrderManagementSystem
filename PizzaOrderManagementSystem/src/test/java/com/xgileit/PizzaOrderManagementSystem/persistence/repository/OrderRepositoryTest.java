@@ -1,5 +1,6 @@
 package com.xgileit.PizzaOrderManagementSystem.persistence.repository;
 
+import com.xgileit.PizzaOrderManagementSystem.infrastructure.exceptions.OrderNotFoundException;
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.Order;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @DataJpaTest
 class OrderRepositoryTest {
@@ -27,7 +30,7 @@ class OrderRepositoryTest {
             "Vegan", "LARGE", "Water", "Large");
 
     @Test
-    void deleteOrderById() {
+    void deleteOrderByIdTest() {
         //Given
         orderRepository.save(order);
 
@@ -40,7 +43,7 @@ class OrderRepositoryTest {
     }
 
     @Test
-    void findOrderById() {
+    void findOrderByIdTestSuccessful() {
         //Given
         orderRepository.save(order);
 
@@ -49,5 +52,17 @@ class OrderRepositoryTest {
 
         //Then
         assertThat(expectedValue).isEqualTo(Optional.of(order));
+    }
+
+    @Test
+    void findOrderByIdTestNotSuccessful(){
+        String message = "Order not found";
+
+        //Given
+        Exception expected = assertThrows(OrderNotFoundException.class,
+                () -> {throw new OrderNotFoundException(message);});
+
+        //Then
+        assertEquals(message, expected.getMessage());
     }
 }
