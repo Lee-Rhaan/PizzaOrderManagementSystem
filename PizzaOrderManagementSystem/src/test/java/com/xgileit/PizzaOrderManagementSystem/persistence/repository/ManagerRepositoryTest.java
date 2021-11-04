@@ -6,6 +6,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.Optional;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 @DataJpaTest
 class ManagerRepositoryTest {
 
@@ -25,7 +29,12 @@ class ManagerRepositoryTest {
     @Test
     void findManagerById() {
         //Given
+        managerRepository.save(manager);
+
         //When
+        Optional<Manager> expectedValue = managerRepository.findManagerById(manager.getId());
+
         //Then
+        assertThat(expectedValue).isEqualTo(Optional.of(manager));
     }
 }

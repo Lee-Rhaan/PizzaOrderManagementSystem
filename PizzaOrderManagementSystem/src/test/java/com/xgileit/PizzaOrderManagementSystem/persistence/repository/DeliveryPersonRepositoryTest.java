@@ -6,6 +6,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.Optional;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 @DataJpaTest
 class DeliveryPersonRepositoryTest {
 
@@ -25,7 +29,13 @@ class DeliveryPersonRepositoryTest {
     @Test
     void findDeliveryPersonById() {
         //Given
+        deliveryPersonRepository.save(deliveryPerson);
+
         //When
+        Optional<DeliveryPerson> expectedValue = deliveryPersonRepository.
+                findDeliveryPersonById(deliveryPerson.getId());
+
         //Then
+        assertThat(expectedValue).isEqualTo(Optional.of(deliveryPerson));
     }
 }
