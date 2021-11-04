@@ -41,7 +41,6 @@ class ChefRepositoryTest {
         assertThat(expectedValue).isEqualTo(Optional.of(chef));
     }
 
-    //need to test the unsuccessful side of this method too
     @Test
     void findChefByIdTestNotSuccessful() {
 
