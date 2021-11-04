@@ -1,20 +1,28 @@
 package com.xgileit.PizzaOrderManagementSystem.api.service;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import com.xgileit.PizzaOrderManagementSystem.persistence.repository.CustomerRepository;
+import com.xgileit.PizzaOrderManagementSystem.persistence.repository.MenuRepository;
+import com.xgileit.PizzaOrderManagementSystem.persistence.repository.OrderRepository;
+import com.xgileit.PizzaOrderManagementSystem.persistence.repository.ReviewRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+@ExtendWith(MockitoExtension.class)
 class CustomerServiceTest {
 
-    @BeforeEach
-    void setUp() {
-    }
+    @Mock
+    private CustomerRepository customerRepository;
 
-    @AfterEach
-    void tearDown() {
-    }
+    @Mock
+    private MenuRepository menuRepository;
+
+    @Mock
+    private OrderRepository orderRepository;
+
+    @Mock
+    private ReviewRepository reviewRepository;
 
     @Test
     void register() {

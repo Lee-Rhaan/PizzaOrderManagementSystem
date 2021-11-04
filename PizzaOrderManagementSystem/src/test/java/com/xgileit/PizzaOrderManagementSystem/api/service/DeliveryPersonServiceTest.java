@@ -59,7 +59,7 @@ class DeliveryPersonServiceTest {
     }
 
     @Test
-    void deliverOrder() {
+    void deliverOrderTest() {
         //When
         when(orderRepository.save(order)).thenReturn(order);
 

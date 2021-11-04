@@ -58,7 +58,7 @@ class ChefServiceTest {
     }
 
     @Test
-    void prepareOrder() {
+    void prepareOrderTest() {
         //When
         when(orderRepository.save(order)).thenReturn(order);
 
