@@ -1,7 +1,7 @@
 package com.xgileit.PizzaOrderManagementSystem.infrastructure.enums;
 
 /**
- * This enum class allows me to set the Status of the users  in this Pizza Order System
+ * This enum class allows me to set the Status of the users in this Pizza Order System
  * with predefined enum constants
  */
 
