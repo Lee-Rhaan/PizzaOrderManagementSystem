@@ -29,8 +29,14 @@ class OrderRepositoryTest {
     @Test
     void deleteOrderById() {
         //Given
+        orderRepository.save(order);
+
         //When
+        orderRepository.deleteOrderById(order.getId());
+        boolean exists = orderRepository.existsById(order.getId());
+
         //Then
+        assertThat(exists).isFalse();
     }
 
     @Test

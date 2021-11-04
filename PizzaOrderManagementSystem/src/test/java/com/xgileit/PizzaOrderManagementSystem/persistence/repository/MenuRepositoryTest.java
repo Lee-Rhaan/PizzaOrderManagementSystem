@@ -28,8 +28,14 @@ class MenuRepositoryTest {
     @Test
     void deleteMenuById() {
         //Given
+        menuRepository.save(menu);
+
         //When
+        menuRepository.deleteMenuById(menu.getId());
+        boolean exists = menuRepository.existsById(menu.getId());
+
         //Then
+        assertThat(exists).isFalse();
     }
 
     @Test
