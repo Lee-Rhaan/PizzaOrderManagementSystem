@@ -1,5 +1,6 @@
 package com.xgileit.PizzaOrderManagementSystem.api.service;
 
+import com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.OrderStatus;
 import com.xgileit.PizzaOrderManagementSystem.infrastructure.exceptions.CustomerNotRegisteredException;
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.Customer;
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.Menu;
@@ -16,13 +17,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Optional;
+import java.util.*;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class CustomerServiceTest {
@@ -144,9 +144,41 @@ class CustomerServiceTest {
 
     @Test
     void listAllDeliveredOrdersTest() {
+        //given
+        Set<Order> mockIterable = mock(Set.class);
+
+        List<Boolean> expectedResultsFromIterator = Arrays.asList(order.getOrderStatus() == OrderStatus.DELIVERED);
+
+        //when
+        MockIterator.mockIterable(mockIterable, order);
+
+        //then
+        List<Boolean> results = new ArrayList<>();
+
+        for (Order order : mockIterable) {
+            results.add(order.getOrderStatus() == OrderStatus.PENDING);
+        }
+
+        assertEquals(expectedResultsFromIterator, results);
     }
 
     @Test
     void listAllPendingOrdersTest() {
+        //given
+        Set<Order> mockIterable = mock(Set.class);
+
+        List<Boolean> expectedResultsFromIterator = Arrays.asList(order.getOrderStatus() == OrderStatus.PENDING);
+
+        //when
+        MockIterator.mockIterable(mockIterable, order);
+
+        //then
+        List<Boolean> results = new ArrayList<>();
+
+        for (Order order : mockIterable) {
+            results.add(order.getOrderStatus() == OrderStatus.PENDING);
+        }
+
+        assertEquals(expectedResultsFromIterator, results);
     }
 }
