@@ -20,7 +20,8 @@ public class DeliveryPerson implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @Column(name = "id")
+    private Long deliveryPersonId;
     private String username;
     private String email;
     private String password;

@@ -17,7 +17,8 @@ public class Menu implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @Column(name = "id")
+    private Long menuId;
 
     @Column(name = "pizza_flavours")
     private String pizzaFlavours;

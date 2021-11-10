@@ -19,7 +19,8 @@ public class Chef implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @Column(name = "id")
+    private Long chefId;
     private String username;
     private String email;
     private String password;
