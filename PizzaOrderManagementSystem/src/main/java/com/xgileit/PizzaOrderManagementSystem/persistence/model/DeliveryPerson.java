@@ -1,6 +1,6 @@
 package com.xgileit.PizzaOrderManagementSystem.persistence.model;
 
-import com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.Status;
+import com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.ActiveStatus;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -29,7 +29,7 @@ public class DeliveryPerson implements Serializable {
     private String address;
     @Column(name = "employee_code")
     private String employeeCode = UUID.randomUUID().toString();
-    private Status status;
+    private ActiveStatus activeStatus;
 
     public DeliveryPerson(String username, String email, String password, String phone, String address)
     {

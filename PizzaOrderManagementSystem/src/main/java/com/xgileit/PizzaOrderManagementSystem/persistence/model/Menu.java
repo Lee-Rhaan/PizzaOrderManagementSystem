@@ -20,22 +20,22 @@ public class Menu implements Serializable {
     @Column(name = "id")
     private Long menuId;
 
-    @Column(name = "pizza_flavours")
-    private String pizzaFlavours;
+    @Column(name = "pizza_flavour")
+    private String pizzaFlavour;
 
-    @Column(name = "pizza_sizes")
-    private String pizzaSizes;
+    @Column(name = "pizza_size")
+    private String pizzaSize;
 
-    private String beverages;
+    private String beverage;
 
-    @Column(name = "beverage_sizes")
-    private String beverageSizes;
+    @Column(name = "beverage_size")
+    private String beverageSize;
 
-    public Menu(String pizzaFlavours, String pizzaSizes, String beverages, String beverageSizes)
+    public Menu(String pizzaFlavour, String pizzaSize, String beverage, String beverageSize)
     {
-        this.pizzaFlavours = pizzaFlavours;
-        this.pizzaSizes = pizzaSizes;
-        this.beverages = beverages;
-        this.beverageSizes = beverageSizes;
+        this.pizzaFlavour = pizzaFlavour;
+        this.pizzaSize = pizzaSize;
+        this.beverage = beverage;
+        this.beverageSize = beverageSize;
     }
 }

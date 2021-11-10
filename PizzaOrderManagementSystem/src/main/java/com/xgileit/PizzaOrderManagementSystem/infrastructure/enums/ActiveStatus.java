@@ -5,19 +5,19 @@ package com.xgileit.PizzaOrderManagementSystem.infrastructure.enums;
  * with predefined enum constants
  */
 
-public enum Status {
+public enum ActiveStatus {
     LOGGED_OUT("LOGGED_OUT"), LOGGED_IN("LOGGED_IN");
 
-    private final String status;
+    private final String activeStatus;
 
     /**
      * Initializing status variable with argument provided in parameters
      *
-     * @param status String
+     * @param activeStatus String
      */
-    Status(String status)
+    ActiveStatus(String activeStatus)
     {
-        this.status = status;
+        this.activeStatus = activeStatus;
     }
 
     /**
@@ -25,6 +25,6 @@ public enum Status {
      */
     public String getStatus()
     {
-        return status;
+        return activeStatus;
     }
 }

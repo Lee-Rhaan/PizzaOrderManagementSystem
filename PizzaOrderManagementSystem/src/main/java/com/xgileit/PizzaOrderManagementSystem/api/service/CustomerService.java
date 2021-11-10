@@ -1,7 +1,7 @@
 package com.xgileit.PizzaOrderManagementSystem.api.service;
 
 import com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.OrderStatus;
-import com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.Status;
+import com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.ActiveStatus;
 import com.xgileit.PizzaOrderManagementSystem.infrastructure.exceptions.CustomerNotRegisteredException;
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.Customer;
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.Menu;
@@ -64,7 +64,7 @@ public class CustomerService {
         Customer customer = customerRepository.findCustomerById(customerId).orElseThrow(() ->
                 new CustomerNotRegisteredException("Customer with id: " + customerId + " not registered"));
 
-        customer.setStatus(Status.LOGGED_IN);
+        customer.setActiveStatus(ActiveStatus.LOGGED_IN);
 
         return customer;
     }

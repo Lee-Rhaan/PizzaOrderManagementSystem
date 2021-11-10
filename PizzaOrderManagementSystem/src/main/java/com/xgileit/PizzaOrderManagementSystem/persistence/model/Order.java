@@ -23,10 +23,10 @@ public class Order implements Serializable {
     private Long orderId;
 
     @Column(name = "pizza_amount")
-    private String pizzaAmount;
+    private String amountOfPizzas;
 
     @Column(name = "beverage_amount")
-    private String beverageAmount;
+    private String amountOfBeverages;
 
     @Column(name = "pizza_flavour")
     private String pizzaFlavour;
@@ -45,11 +45,11 @@ public class Order implements Serializable {
     @ManyToOne
     private Customer customerOrder;
 
-    public Order(String pizzaAmount, String beverageAmount, String pizzaFlavour, String pizzaSize,
+    public Order(String amountOfPizzas, String amountOfBeverages, String pizzaFlavour, String pizzaSize,
                  String beverage, String beverageSize)
     {
-        this.pizzaAmount = pizzaAmount;
-        this.beverageAmount = beverageAmount;
+        this.amountOfPizzas = amountOfPizzas;
+        this.amountOfBeverages = amountOfBeverages;
         this.pizzaFlavour = pizzaFlavour;
         this.pizzaSize = pizzaSize;
         this.beverage = beverage;

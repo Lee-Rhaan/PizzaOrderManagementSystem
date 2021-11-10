@@ -1,6 +1,6 @@
 package com.xgileit.PizzaOrderManagementSystem.api.service;
 
-import com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.Status;
+import com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.ActiveStatus;
 import com.xgileit.PizzaOrderManagementSystem.infrastructure.exceptions.DeliveryPersonNotFoundException;
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.DeliveryPerson;
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.Order;
@@ -39,7 +39,7 @@ public class DeliveryPersonService {
         DeliveryPerson deliveryPerson = deliveryPersonRepository.findDeliveryPersonById(deliveryPersonId).orElseThrow(() ->
                 new DeliveryPersonNotFoundException("Delivery Person with id: " + deliveryPersonId + " not found"));
 
-        deliveryPerson.setStatus(Status.LOGGED_IN);
+        deliveryPerson.setActiveStatus(ActiveStatus.LOGGED_IN);
 
         return deliveryPerson;
     }

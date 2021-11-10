@@ -19,15 +19,17 @@ public class Review implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long reviewId;
-    private Integer rating;
-    private String feedback;
+    @Column(name = "rating")
+    private Integer customerRating;
+    @Column(name = "feedback")
+    private String customerFeedback;
 
     @ManyToOne
     private Customer customerReview;
 
     public Review(Integer rating, String feedback)
     {
-        this.rating = rating;
-        this.feedback = feedback;
+        this.customerRating = rating;
+        this.customerFeedback = feedback;
     }
 }

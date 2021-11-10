@@ -1,6 +1,6 @@
 package com.xgileit.PizzaOrderManagementSystem.api.service;
 
-import com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.Status;
+import com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.ActiveStatus;
 import com.xgileit.PizzaOrderManagementSystem.infrastructure.exceptions.ChefNotFoundException;
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.Chef;
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.Order;
@@ -39,7 +39,7 @@ public class ChefService {
         Chef chef = chefRepository.findChefById(chefId).orElseThrow(() ->
                 new ChefNotFoundException("Chef with id: " + chefId + " not found"));
 
-        chef.setStatus(Status.LOGGED_IN);
+        chef.setActiveStatus(ActiveStatus.LOGGED_IN);
 
         return chef;
     }

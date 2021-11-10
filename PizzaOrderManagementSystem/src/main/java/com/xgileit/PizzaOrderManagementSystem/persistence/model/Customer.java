@@ -1,6 +1,6 @@
 package com.xgileit.PizzaOrderManagementSystem.persistence.model;
 
-import com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.Status;
+import com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.ActiveStatus;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -28,7 +28,7 @@ public class Customer implements Serializable {
     private String address;
     @Column(name = "customer_code")
     private String customerCode = null;
-    private Status status;
+    private ActiveStatus activeStatus;
 
     //mappedBy indicates that this side is the inverse side, and that the mapping is defined
     //by the attribute customerOrder at the other side of the association.
@@ -38,7 +38,7 @@ public class Customer implements Serializable {
     //mappedBy indicates that this side is the inverse side, and that the mapping is defined
     //by the attribute customerReview at the other side of the association.
     @OneToMany (mappedBy = "customerReview")
-    private List<Review> review;
+    private List<Review> reviews;
 
     public Customer(String username, String email, String password, String phone, String address)
     {

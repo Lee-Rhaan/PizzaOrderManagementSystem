@@ -1,6 +1,6 @@
 package com.xgileit.PizzaOrderManagementSystem;
 
-import com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.Status;
+import com.xgileit.PizzaOrderManagementSystem.infrastructure.enums.ActiveStatus;
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.Chef;
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.DeliveryPerson;
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.Manager;
@@ -35,13 +35,13 @@ public class PizzaOrderManagementSystemApplication {
 	{
 		return args -> {
 			//ID = 1
-			managerRepository.save(new Manager("Adam", "Adam@admin.com", "qwerty", "876718676", "76 Strand Street CT")).setStatus(Status.LOGGED_OUT);
+			managerRepository.save(new Manager("Adam", "Adam@admin.com", "qwerty", "876718676", "76 Strand Street CT")).setActiveStatus(ActiveStatus.LOGGED_OUT);
 
 			//ID = 2
-			chefRepository.save(new Chef("James", "James@chef.com", "food", "876331116", "742 Adderley Street CT")).setStatus(Status.LOGGED_OUT);
+			chefRepository.save(new Chef("James", "James@chef.com", "food", "876331116", "742 Adderley Street CT")).setActiveStatus(ActiveStatus.LOGGED_OUT);
 
 			//ID = 3
-			deliveryPersonRepository.save(new DeliveryPerson("Bryston", "Bryston@delivery.com", "fast", "07142842", "11 Long Street CT")).setStatus(Status.LOGGED_OUT);
+			deliveryPersonRepository.save(new DeliveryPerson("Bryston", "Bryston@delivery.com", "fast", "07142842", "11 Long Street CT")).setActiveStatus(ActiveStatus.LOGGED_OUT);
 		};
 	}
 
