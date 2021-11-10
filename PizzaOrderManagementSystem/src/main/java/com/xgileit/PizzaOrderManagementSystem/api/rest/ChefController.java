@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.*;
  * to this server.
  *
  * The @RequestMapping annotation determines what type of requests this class handles. So in this case
- * if you want access to this class -> you need to access it through the base request("/api/v1/chef")
+ * if you want access to this class -> you need to access it through the base request("/api/v1/chefs")
  */
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/chef")
+@RequestMapping("/api/v1/chefs")
 public class ChefController {
 
     /**
@@ -28,29 +28,29 @@ public class ChefController {
     private final ChefService chefService;
 
     /**
-     * How to access this method: "/api/v1/chef/login/{id}"
+     * How to access this method: "/api/v1/chefs/login/{chefId}"
      * This chef don't need to register in order to get access to this server.
      * They can just log in by providing their unique id.
      *
-     * @param id Long
+     * @param chefId Long
      * @return logged in chef if the request was successful
      */
-    @GetMapping("/login/{id}")
-    public ResponseEntity<Chef> login(@PathVariable("id") Long id)
+    @GetMapping("/login/{chefId}")
+    public ResponseEntity<Chef> login(@PathVariable("chefId") Long chefId)
     {
-        Chef chef = chefService.login(id);
+        Chef chef = chefService.login(chefId);
         return new ResponseEntity<>(chef, HttpStatus.OK);
     }
 
     /**
-     * How to access this method: "/api/v1/chef/prepare/order"
+     * How to access this method: "/api/v1/chefs/orders/prepare"
      * Sets the status of the order to "Prepared" if it exists in the database, and
      * then replaces the old order with this updated version.
      *
      * @param order object
      * @return updated order if request were successful
      */
-    @PutMapping("/prepare/order")
+    @PutMapping("/orders/prepare")
     public ResponseEntity<Order> prepareOrder(@RequestBody Order order)
     {
         Order preparedOrder = chefService.prepareOrder(order);

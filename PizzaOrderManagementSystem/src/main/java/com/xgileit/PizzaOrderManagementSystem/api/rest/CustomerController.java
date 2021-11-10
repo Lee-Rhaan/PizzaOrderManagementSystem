@@ -17,12 +17,12 @@ import java.util.List;
  * to this server.
  *
  * The @RequestMapping annotation determines what type of requests this class handles. So in this case
- * if you want access to this class -> you need to access it through the base request("/api/v1/customer")
+ * if you want access to this class -> you need to access it through the base request("/api/v1/customers")
  */
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/customer")
+@RequestMapping("/api/v1/customers")
 public class CustomerController {
 
     /**
@@ -32,7 +32,7 @@ public class CustomerController {
     private final CustomerService customerService;
 
     /**
-     * How to access this method: "/api/v1/customer/register"
+     * How to access this method: "/api/v1/customers/register"
      * This method registers and adds a new customer to the database.
      *
      * @param customer object
@@ -46,22 +46,22 @@ public class CustomerController {
     }
 
     /**
-     * How to access this method: "/api/v1/customer/login/{id}"
+     * How to access this method: "/api/v1/customers/login/{customerId}"
      * Allows the customer to log in by providing their unique id.
      * (Their id gets provided when they register on the server)
      *
-     * @param id Long
+     * @param customerId Long
      * @return logged in customer if request were successful
      */
-    @GetMapping("/login/{id}")
-    public ResponseEntity<Customer> login(@PathVariable("id") Long id)
+    @GetMapping("/login/{customerId}")
+    public ResponseEntity<Customer> login(@PathVariable("customerId") Long customerId)
     {
-        Customer customer = customerService.login(id);
+        Customer customer = customerService.login(customerId);
         return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
     /**
-     * How to access this method: "/api/v1/customer/menu"
+     * How to access this method: "/api/v1/customers/menu"
      * @return List of products on menu
      */
     @GetMapping("/menu")
@@ -72,13 +72,13 @@ public class CustomerController {
     }
 
     /**
-     * How to access this method: "/api/v1/customer/create/order"
+     * How to access this method: "/api/v1/customers/orders/create"
      * Order gets created and stored in database
      *
      * @param order object
      * @return saved order if request were successful
      */
-    @PostMapping("/create/order")
+    @PostMapping("/orders/create")
     public ResponseEntity<Order> createOrder(@RequestBody Order order)
     {
         Order newOrder = customerService.createOrder(order);
@@ -86,14 +86,14 @@ public class CustomerController {
     }
 
     /**
-     * How to access this method: "/api/v1/customer/update/order"
+     * How to access this method: "/api/v1/customers/orders/update"
      * This method will replace the old order object with this newly updated order object
      * if the order object exists in the database.
      *
      * @param order object
      * @return updated order if request were successful
      */
-    @PutMapping("/update/order")
+    @PutMapping("/orders/update")
     public ResponseEntity<Order> updateOrder(@RequestBody Order order)
     {
         Order updatedOrder = customerService.updateOrder(order);
@@ -101,28 +101,28 @@ public class CustomerController {
     }
 
     /**
-     * How to access this method: "/api/v1/customer/cancel/order"
+     * How to access this method: "/api/v1/customers/orders/cancel/{orderId}"
      * This method will delete an order object from the database by using it's id as
      * a reference.
      *
-     * @param id Long
+     * @param orderId Long
      * @return String response if request were successful
      */
-    @DeleteMapping("/cancel/order")
-    public ResponseEntity<String> cancelOrder(@PathVariable("id") Long id)
+    @DeleteMapping("/orders/cancel/{orderId}")
+    public ResponseEntity<String> cancelOrder(@PathVariable("orderId") Long orderId)
     {
-        String response = customerService.cancelOrder(id);
+        String response = customerService.cancelOrder(orderId);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     /**
-     * How to access this method: "/api/v1/customer/submit/review"
+     * How to access this method: "/api/v1/customers/reviews/submit"
      * Review gets created and saved in database
      *
      * @param review object
      * @return saved review if request were successful
      */
-    @PostMapping("/submit/review")
+    @PostMapping("/reviews/submit")
     public ResponseEntity<Review> submitReview(@RequestBody Review review)
     {
         Review newReview = customerService.submitReview(review);
@@ -130,10 +130,10 @@ public class CustomerController {
     }
 
     /**
-     * How to access this method: "/api/v1/customer/all/delivered/orders"
+     * How to access this method: "/api/v1/customers/orders/delivered"
      * @return List of all orders with delivered status stored in database
      */
-    @GetMapping("/all/delivered/orders")
+    @GetMapping("/orders/delivered")
     public ResponseEntity<List<Order>> listAllDeliveredOrders()
     {
         List<Order> deliveredOrders = customerService.listAllDeliveredOrders();
@@ -141,10 +141,10 @@ public class CustomerController {
     }
 
     /**
-     * How to access this method: "/api/v1/customer/all/pending/orders"
+     * How to access this method: "/api/v1/customers/orders/pending"
      * @return List of all order with pending status stored in database
      */
-    @GetMapping("/all/pending/orders")
+    @GetMapping("/orders/pending")
     public ResponseEntity<List<Order>> listAllPendingOrders()
     {
         List<Order> pendingOrders = customerService.listAllPendingOrders();

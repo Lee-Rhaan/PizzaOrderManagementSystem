@@ -14,12 +14,12 @@ import java.util.List;
  * to this server.
  *
  * The @RequestMapping annotation determines what type of requests this class handles. So in this case
- * if you want access to this class -> you need to access it through the base request("/api/v1/admin")
+ * if you want access to this class -> you need to access it through the base request("/api/v1/admins")
  */
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/admin")
+@RequestMapping("/api/v1/admins")
 public class ManagerController {
 
     /**
@@ -29,22 +29,22 @@ public class ManagerController {
     private final ManagerService managerService;
 
     /**
-     * How to access this method: "/api/v1/admin/login/{id}"
+     * How to access this method: "/api/v1/admins/login/{managerId}"
      * This manager don't need to register in order to get access to this server.
      * They can just log in by providing their unique id.
      *
-     * @param id Long
+     * @param managerId Long
      * @return Logged in manager if request were successful
      */
-    @GetMapping("/login/{id}")
-    public ResponseEntity<Manager> login(@PathVariable("id") Long id)
+    @GetMapping("/login/{managerId}")
+    public ResponseEntity<Manager> login(@PathVariable("managerId") Long managerId)
     {
-        Manager manager = managerService.login(id);
+        Manager manager = managerService.login(managerId);
         return new ResponseEntity<>(manager, HttpStatus.OK);
     }
 
     /**
-     * How to access this method: "/api/v1/admin/menu"
+     * How to access this method: "/api/v1/admins/menu"
      * @return list of products on Menu
      */
     @GetMapping("/menu")
@@ -55,13 +55,13 @@ public class ManagerController {
     }
 
     /**
-     * How to access this method: "/api/v1/admin/create/menu"
+     * How to access this method: "/api/v1/admins/menu/create"
      * Menu gets created and saved in database
      *
      * @param menu object
      * @return saved menu if request were successful
      */
-    @PostMapping("/create/menu")
+    @PostMapping("/menu/create")
     public ResponseEntity<Menu> createMenu(@RequestBody Menu menu)
     {
         Menu newMenu = managerService.createMenu(menu);
@@ -69,14 +69,14 @@ public class ManagerController {
     }
 
     /**
-     * How to access this method: "/api/v1/admin/update/menu"
+     * How to access this method: "/api/v1/admins/menu/update"
      * This method will replace the old menu object with this newly updated menu object
      * if the menu object exists in the database.
      *
      * @param menu object
      * @return updated menu if request were successful
      */
-    @PutMapping("/update/menu")
+    @PutMapping("/menu/update")
     public ResponseEntity<Menu> updateMenu(@RequestBody Menu menu)
     {
         Menu updatedMenu = managerService.updateMenu(menu);
@@ -84,29 +84,29 @@ public class ManagerController {
     }
 
     /**
-     * How to access this method: "/api/v1/admin/delete/menu/{id}"
+     * How to access this method: "/api/v1/admins/menu/delete/{menuId}"
      * This method will delete a menu object from the database by using it's id as
      * a reference.
      *
-     * @param id Long
+     * @param menuId Long
      * @return String response if request were successful
      */
-    @DeleteMapping("/delete/menu/{id}")
-    public ResponseEntity<String> deleteMenu(@PathVariable("id") Long id)
+    @DeleteMapping("/menu/delete/{menuId}")
+    public ResponseEntity<String> deleteMenu(@PathVariable("menuId") Long menuId)
     {
-        String response = managerService.deleteMenu(id);
+        String response = managerService.deleteMenu(menuId);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     /**
-     * How to access this method: "/api/v1/admin/transfer/order"
+     * How to access this method: "/api/v1/admins/orders/transfer"
      * Sets the status of the order to "Transferred" if it exists in the database, and
      * then replaces the old order with this updated version.
      *
      * @param order object
      * @return updated order if request were successful
      */
-    @PutMapping("/transfer/order")
+    @PutMapping("/orders/transfer")
     public ResponseEntity<Order> transferOrderToChef(@RequestBody Order order)
     {
         Order transferredOrder = managerService.transferOrderToChef(order);
@@ -114,29 +114,29 @@ public class ManagerController {
     }
 
     /**
-     * How to access this method: "/api/v1/admin/cancel/order/{id}"
-     * This method will delete an order object from the database by using it's id as
+     * How to access this method: "/api/v1/admins/orders/cancel/{orderId}"
+     * This method will delete an order object from the database by using it's orderId as
      * a reference.
      *
-     * @param id Long
+     * @param orderId Long
      * @return String response if request were successful
      */
-    @DeleteMapping("/cancel/order/{id}")
-    public ResponseEntity<String> cancelOrder(@PathVariable("id") Long id)
+    @DeleteMapping("/orders/cancel/{orderId}")
+    public ResponseEntity<String> cancelOrder(@PathVariable("orderId") Long orderId)
     {
-        String response = managerService.cancelOrder(id);
+        String response = managerService.cancelOrder(orderId);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     /**
-     * How to access this method: "/api/v1/admin/update/order"
+     * How to access this method: "/api/v1/admins/orders/update"
      * This method will replace the old order object with this newly updated order object
      * if the order object exists in the database.
      *
      * @param order object
      * @return updated order if request were successful
      */
-    @PutMapping("/update/order")
+    @PutMapping("/orders/update")
     public ResponseEntity<Order> updateOrder(@RequestBody Order order)
     {
         Order updatedOrder = managerService.updateOrder(order);
@@ -144,10 +144,10 @@ public class ManagerController {
     }
 
     /**
-     * How to access this method: "/api/v1/admin/all/pending/orders"
+     * How to access this method: "/api/v1/admins/orders/pending"
      * @return List of all orders stored in the database with pending status
      */
-    @GetMapping("/all/pending/orders")
+    @GetMapping("/orders/pending")
     public ResponseEntity<List<Order>> listAllPendingOrders()
     {
         List<Order> pendingOrders = managerService.listAllPendingOrders();
@@ -155,10 +155,10 @@ public class ManagerController {
     }
 
     /**
-     * How to access this method: "/api/v1/admin/all/orders"
+     * How to access this method: "/api/v1/admins/orders"
      * @return list of all orders stored in the database
      */
-    @GetMapping("/all/orders")
+    @GetMapping("/orders")
     public ResponseEntity<List<Order>> listAllOrders()
     {
         List<Order> allOrders = managerService.listAllOrders();
@@ -166,10 +166,10 @@ public class ManagerController {
     }
 
     /**
-     * How to access this method: "/api/v1/admin/all/reviews"
+     * How to access this method: "/api/v1/admins/reviews"
      * @return List of all customer reviews
      */
-    @GetMapping("/all/reviews")
+    @GetMapping("/reviews")
     public ResponseEntity<List<Review>> listAllReviews()
     {
         List<Review> allReviews = managerService.listAllReviews();
@@ -177,55 +177,55 @@ public class ManagerController {
     }
 
     /**
-     * How to access this method: "/api/v1/admin/find/review/{id}"
-     * This method will find a review by it's id in the database.
+     * How to access this method: "/api/v1/admins/reviews/review/{reviewId}"
+     * This method will find a review by it's reviewId in the database.
      *
-     * @param id Long
+     * @param reviewId Long
      * @return review object if review exists in database or Error message if review
      *         with specified id does not exist in database
      */
-    @GetMapping("/find/review/{id}")
-    public ResponseEntity<Review> findReview(@PathVariable("id") Long id)
+    @GetMapping("/reviews/review/{reviewId}")
+    public ResponseEntity<Review> findReview(@PathVariable("reviewId") Long reviewId)
     {
-        Review review = managerService.findReviewById(id);
+        Review review = managerService.findReviewById(reviewId);
         return new ResponseEntity<>(review, HttpStatus.OK);
     }
 
     /**
-     * How to access this method: "/api/v1/admin/find/order/{id}"
-     * This method will find an order by it's id in the database.
+     * How to access this method: "/api/v1/admins/orders/order/{orderId}"
+     * This method will find an order by it's orderId in the database.
      *
-     * @param id Long
+     * @param orderId Long
      * @return order object if order exists in database or Error message if order
      *         with specified id does not exist in database
      */
-    @GetMapping("/find/order/{id}")
-    public ResponseEntity<Order> findOrder(@PathVariable("id") Long id)
+    @GetMapping("/orders/order/{orderId}")
+    public ResponseEntity<Order> findOrder(@PathVariable("orderId") Long orderId)
     {
-        Order order = managerService.findOrderById(id);
+        Order order = managerService.findOrderById(orderId);
         return new ResponseEntity<>(order, HttpStatus.OK);
     }
 
     /**
-     * How to access this method: "/api/v1/admin/find/menu/{id}"
-     * This method will find a menu by it's id in the database.
+     * How to access this method: "/api/v1/admins/menu/find/{menuId}"
+     * This method will find a menu by it's menuId in the database.
      *
-     * @param id Long
+     * @param menuId Long
      * @return menu object if menu exists in database or Error message if menu
      *         with specified id does not exist in database
      */
-    @GetMapping("/find/menu/{id}")
-    public ResponseEntity<Menu> findMenu(@PathVariable("id") Long id)
+    @GetMapping("/menu/find/{menuId}")
+    public ResponseEntity<Menu> findMenu(@PathVariable("menuId") Long menuId)
     {
-        Menu menu = managerService.findMenuById(id);
+        Menu menu = managerService.findMenuById(menuId);
         return new ResponseEntity<>(menu, HttpStatus.OK);
     }
 
     /**
-     * How to access this method: "/api/v1/admin/all/chef"
+     * How to access this method: "/api/v1/admins/chefs"
      * @return List of all chefs stored in database
      */
-    @GetMapping("/all/chef")
+    @GetMapping("/chefs")
     public ResponseEntity<List<Chef>> listAllChefs()
     {
         List<Chef> chefs = managerService.listAllChefs();
@@ -233,10 +233,10 @@ public class ManagerController {
     }
 
     /**
-     * How to access this method: "/api/v1/admin/all/deliveryPeople"
+     * How to access this method: "/api/v1/admins/deliveryPeople"
      * @return List of all Delivery persons stored in database
      */
-    @GetMapping("/all/deliveryPeople")
+    @GetMapping("/deliveryPeople")
     public ResponseEntity<List<DeliveryPerson>> listAllDeliveryPeople()
     {
         List<DeliveryPerson> deliveryPeople = managerService.listAllDeliveryPeople();
@@ -244,10 +244,10 @@ public class ManagerController {
     }
 
     /**
-     * How to access this method: "/api/v1/admin/all/customer"
+     * How to access this method: "/api/v1/admins/customers"
      * @return List of all customers stored in database.
      */
-    @GetMapping("/all/customer")
+    @GetMapping("/customers")
     public ResponseEntity<List<Customer>> listAllCustomers()
     {
         List<Customer> customers = managerService.listAllCustomers();
@@ -255,10 +255,10 @@ public class ManagerController {
     }
 
     /**
-     * How to access this method: "/api/v1/admin/all/manager"
+     * How to access this method: "/api/v1/admins/managers"
      * @return List of all managers stored in database.
      */
-    @GetMapping("/all/manager")
+    @GetMapping("/managers")
     public ResponseEntity<List<Manager>> listAllManagers()
     {
         List<Manager> managers = managerService.listAllManagers();
@@ -266,47 +266,47 @@ public class ManagerController {
     }
 
     /**
-     * How to access this method: "/api/v1/admin/find/customer/{id}"
-     * This method will find a customer by it's id in the database.
+     * How to access this method: "/api/v1/admins/customers/customer/{customerId}"
+     * This method will find a customer by it's customerId in the database.
      *
-     * @param id Long
+     * @param customerId Long
      * @return customer object if customer exists in database or Error message if customer
      *         with specified id does not exist in database
      */
-    @GetMapping("/find/customer/{id}")
-    public ResponseEntity<Customer> findCustomer(@PathVariable("id") Long id)
+    @GetMapping("/customers/customer/{customerId}")
+    public ResponseEntity<Customer> findCustomer(@PathVariable("customerId") Long customerId)
     {
-        Customer customer = managerService.findCustomer(id);
+        Customer customer = managerService.findCustomer(customerId);
         return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
     /**
-     * How to access this method: "/api/v1/admin/find/chef/{id}"
-     * This method will find a chef by it's id in the database.
+     * How to access this method: "/api/v1/admins/chefs/chef/{chefId}"
+     * This method will find a chef by it's chefId in the database.
      *
-     * @param id Long
+     * @param chefId Long
      * @return chef object if chef exists in database or Error message if chef
      *         with specified id does not exist in database
      */
-    @GetMapping("/find/chef/{id}")
-    public ResponseEntity<Chef> findChef(@PathVariable("id") Long id)
+    @GetMapping("/chefs/chef/{chefId}")
+    public ResponseEntity<Chef> findChef(@PathVariable("chefId") Long chefId)
     {
-        Chef chef = managerService.findChef(id);
+        Chef chef = managerService.findChef(chefId);
         return new ResponseEntity<>(chef, HttpStatus.OK);
     }
 
     /**
-     * How to access this method: "/api/v1/admin/find/deliveryPerson/{id}"
-     * This method will find a delivery person by it's id in the database.
+     * How to access this method: "/api/v1/admins/deliveryPerson/find/{deliveryPersonId}"
+     * This method will find a delivery person by it's deliveryPersonId in the database.
      *
-     * @param id Long
+     * @param deliveryPersonId Long
      * @return delivery person object if delivery person exists in database or Error message if
      *         delivery person with specified id does not exist in database
      */
-    @GetMapping("/find/deliveryPerson/{id}")
-    public ResponseEntity<DeliveryPerson> findDeliveryPerson(@PathVariable("id") Long id)
+    @GetMapping("/deliveryPerson/find/{deliveryPersonId}")
+    public ResponseEntity<DeliveryPerson> findDeliveryPerson(@PathVariable("deliveryPersonId") Long deliveryPersonId)
     {
-        DeliveryPerson deliveryPerson = managerService.findDeliveryPerson(id);
+        DeliveryPerson deliveryPerson = managerService.findDeliveryPerson(deliveryPersonId);
         return new ResponseEntity<>(deliveryPerson, HttpStatus.OK);
     }
 

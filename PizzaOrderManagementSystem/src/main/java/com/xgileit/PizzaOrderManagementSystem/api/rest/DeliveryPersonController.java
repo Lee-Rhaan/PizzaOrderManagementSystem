@@ -13,12 +13,12 @@ import org.springframework.web.bind.annotation.*;
  * to this server.
  *
  * The @RequestMapping annotation determines what type of requests this class handles. So in this case
- * if you want access to this class -> you need to access it through the base request("/api/v1/delivery")
+ * if you want access to this class -> you need to access it through the base request("/api/v1/deliveries")
  */
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/delivery")
+@RequestMapping("/api/v1/deliveries")
 public class DeliveryPersonController {
 
     /**
@@ -28,29 +28,29 @@ public class DeliveryPersonController {
     private final DeliveryPersonService deliveryPersonService;
 
     /**
-     * How to access this method: "/api/v1/delivery/login/{id}"
+     * How to access this method: "/api/v1/deliveries/login/{deliveryPersonId}"
      * This delivery person don't need to register in order to get access to this server.
      * They can just log in by providing their unique id.
      *
-     * @param id Long
+     * @param deliveryPersonId Long
      * @return Logged in delivery person if request were successful
      */
-    @GetMapping("/login/{id}")
-    public ResponseEntity<DeliveryPerson> login(@PathVariable("id") Long id)
+    @GetMapping("/login/{deliveryPersonId}")
+    public ResponseEntity<DeliveryPerson> login(@PathVariable("deliveryPersonId") Long deliveryPersonId)
     {
-        DeliveryPerson deliveryPerson = deliveryPersonService.login(id);
+        DeliveryPerson deliveryPerson = deliveryPersonService.login(deliveryPersonId);
         return new ResponseEntity<>(deliveryPerson, HttpStatus.OK);
     }
 
     /**
-     * How to access this method: "/api/v1/delivery/deliver/order"
+     * How to access this method: "/api/v1/deliveries/orders/deliver"
      * Sets the status of the order to "Delivered" if it exists in the database, and
      * then replaces the old order with this updated version.
      *
      * @param order object
      * @return updated order if request were successful
      */
-    @PutMapping("/deliver/order")
+    @PutMapping("/orders/deliver")
     public ResponseEntity<Order> deliverOrder(@RequestBody Order order)
     {
         Order deliveredOrder = deliveryPersonService.deliverOrder(order);
