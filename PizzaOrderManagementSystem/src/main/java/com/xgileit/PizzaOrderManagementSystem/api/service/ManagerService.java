@@ -35,17 +35,17 @@ public class ManagerService {
     private final CustomerRepository customerRepository;
 
     /**
-     * If a manager with the id being passed as an argument exists in the database, he/she gets
+     * If a manager with the managerId being passed as an argument exists in the database, he/she gets
      * logged in.
      * If not, an exception gets thrown.
      *
-     * @param id Long
+     * @param managerId Long
      * @return Logged in manager or exception
      */
-    public Manager login(Long id)
+    public Manager login(Long managerId)
     {
-        Manager manager = managerRepository.findManagerById(id).orElseThrow(() ->
-                new ManagerNotFoundException("Manager with id: " + id + " not found"));
+        Manager manager = managerRepository.findManagerById(managerId).orElseThrow(() ->
+                new ManagerNotFoundException("Manager with id: " + managerId + " not found"));
 
         manager.setStatus(Status.LOGGED_IN);
 
@@ -83,16 +83,16 @@ public class ManagerService {
     }
 
     /**
-     * Checks if a menu with a matching id exists in the database.
+     * Checks if a menu with a matching menuId exists in the database.
      * If it exists, the menu will be removed.
      *
-     * @param id Long
+     * @param menuId Long
      * @return String response
      */
     @Transactional
-    public String deleteMenu(Long id)
+    public String deleteMenu(Long menuId)
     {
-        menuRepository.deleteMenuById(id);
+        menuRepository.deleteMenuById(menuId);
         return "Menu item deleted";
     }
 
@@ -110,7 +110,7 @@ public class ManagerService {
     }
 
     /**
-     * This method will delete an order object from the database by using it's id as
+     * This method will delete an order object from the database by using it's orderId as
      * a reference.
      *
      * @param orderId Long
@@ -170,7 +170,7 @@ public class ManagerService {
     }
 
     /**
-     * This method will find a review by it's id in the database.
+     * This method will find a review by it's reviewId in the database.
      *
      * @param reviewId Long
      * @return review object if review exists in database or Error message if review
@@ -183,29 +183,29 @@ public class ManagerService {
     }
 
     /**
-     * This method will find an order by it's id in the database.
+     * This method will find an order by it's orderId in the database.
      *
-     * @param id Long
+     * @param orderId Long
      * @return order object if order exists in database or Error message if order
      *        with specified id does not exist in database
      */
-    public Order findOrderById(Long id)
+    public Order findOrderById(Long orderId)
     {
-        return orderRepository.findOrderById(id).orElseThrow(() -> new
-                OrderNotFoundException("Order with id: " + id + " not found"));
+        return orderRepository.findOrderById(orderId).orElseThrow(() -> new
+                OrderNotFoundException("Order with id: " + orderId + " not found"));
     }
 
     /**
-     * This method will find a menu by it's id in the database.
+     * This method will find a menu by it's menuId in the database.
      *
-     * @param id Long
+     * @param menuId Long
      * @return menu object if menu exists in database or Error message if menu
      *         with specified id does not exist in database
      */
-    public Menu findMenuById(Long id)
+    public Menu findMenuById(Long menuId)
     {
-        return menuRepository.findMenuById(id).orElseThrow(() -> new
-                MenuNotFoundException("Menu with id: " + id + " not found"));
+        return menuRepository.findMenuById(menuId).orElseThrow(() -> new
+                MenuNotFoundException("Menu with id: " + menuId + " not found"));
     }
 
     /**
@@ -241,42 +241,42 @@ public class ManagerService {
     }
 
     /**
-     * This method will find a customer by it's id in the database.
+     * This method will find a customer by it's customerId in the database.
      *
-     * @param id Long
+     * @param customerId Long
      * @return customer object if customer exists in database or Error message if customer
      *         with specified id does not exist in database
      */
-    public Customer findCustomer(Long id)
+    public Customer findCustomer(Long customerId)
     {
-        return customerRepository.findCustomerById(id).orElseThrow(() -> new
-                CustomerNotFoundException("Customer with id: " + id + " not found"));
+        return customerRepository.findCustomerById(customerId).orElseThrow(() -> new
+                CustomerNotFoundException("Customer with id: " + customerId + " not found"));
     }
 
     /**
-     * This method will find a chef by it's id in the database.
+     * This method will find a chef by it's chefId in the database.
      *
-     * @param id Long
+     * @param chefId Long
      * @return chef object if chef exists in database or Error message if chef
      *        with specified id does not exist in database
      */
-    public Chef findChef(Long id)
+    public Chef findChef(Long chefId)
     {
-        return chefRepository.findChefById(id).orElseThrow(() -> new
-                ChefNotFoundException("Customer with id: " + id + " not found"));
+        return chefRepository.findChefById(chefId).orElseThrow(() -> new
+                ChefNotFoundException("Customer with id: " + chefId + " not found"));
     }
 
     /**
-     * This method will find a delivery person by it's id in the database.
+     * This method will find a delivery person by it's deliveryPersonId in the database.
      *
-     * @param id Long
+     * @param deliveryPersonId Long
      * @return delivery person object if delivery person exists in database or Error message if
      *         delivery person with specified id does not exist in database
      */
-    public DeliveryPerson findDeliveryPerson(Long id)
+    public DeliveryPerson findDeliveryPerson(Long deliveryPersonId)
     {
-        return deliveryPersonRepository.findDeliveryPersonById(id).orElseThrow(() -> new
-                DeliveryPersonNotFoundException("Customer with id: " + id + " not found"));
+        return deliveryPersonRepository.findDeliveryPersonById(deliveryPersonId).orElseThrow(() -> new
+                DeliveryPersonNotFoundException("Customer with id: " + deliveryPersonId + " not found"));
     }
 
 }

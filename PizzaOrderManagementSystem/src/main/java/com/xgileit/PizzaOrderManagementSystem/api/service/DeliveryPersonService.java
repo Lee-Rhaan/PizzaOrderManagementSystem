@@ -27,17 +27,17 @@ public class DeliveryPersonService {
     private final OrderRepository orderRepository;
 
     /**
-     * If a delivery person with the id being passed as an argument exists in the database, he/she gets
-     * logged in.
+     * If a delivery person with the deliveryPersonId being passed as an argument
+     * exists in the database, he/she gets logged in.
      * If not, an exception gets thrown.
      *
-     * @param id Long
+     * @param deliveryPersonId Long
      * @return Logged in delivery person or exception
      */
-    public DeliveryPerson login(Long id)
+    public DeliveryPerson login(Long deliveryPersonId)
     {
-        DeliveryPerson deliveryPerson = deliveryPersonRepository.findDeliveryPersonById(id).orElseThrow(() ->
-                new DeliveryPersonNotFoundException("Delivery Person with id: " + id + " not found"));
+        DeliveryPerson deliveryPerson = deliveryPersonRepository.findDeliveryPersonById(deliveryPersonId).orElseThrow(() ->
+                new DeliveryPersonNotFoundException("Delivery Person with id: " + deliveryPersonId + " not found"));
 
         deliveryPerson.setStatus(Status.LOGGED_IN);
 

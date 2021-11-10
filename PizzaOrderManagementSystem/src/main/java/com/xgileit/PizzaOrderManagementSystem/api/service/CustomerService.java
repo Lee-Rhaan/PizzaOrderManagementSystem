@@ -52,17 +52,17 @@ public class CustomerService {
     }
 
     /**
-     * If a customer with the id being passed as an argument exists in the database, he/she gets
+     * If a customer with the customerId being passed as an argument exists in the database, he/she gets
      * logged in.
      * If not, an exception gets thrown.
      *
-     * @param id Long
+     * @param customerId Long
      * @return Logged in customer or exception
      */
-    public Customer login(Long id)
+    public Customer login(Long customerId)
     {
-        Customer customer = customerRepository.findCustomerById(id).orElseThrow(() ->
-                new CustomerNotRegisteredException("Customer with id: " + id + " not registered"));
+        Customer customer = customerRepository.findCustomerById(customerId).orElseThrow(() ->
+                new CustomerNotRegisteredException("Customer with id: " + customerId + " not registered"));
 
         customer.setStatus(Status.LOGGED_IN);
 
@@ -102,7 +102,7 @@ public class CustomerService {
     }
 
     /**
-     * This method will delete an order object from the database by using it's id as
+     * This method will delete an order object from the database by using it's orderId as
      * a reference.
      *
      * @param orderId Long

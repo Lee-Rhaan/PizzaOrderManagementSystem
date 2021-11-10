@@ -27,17 +27,17 @@ public class ChefService {
     private final OrderRepository orderRepository;
 
     /**
-     * If a chef with the id being passed as an argument exists in the database, he/she gets
+     * If a chef with the chefId being passed as an argument exists in the database, he/she gets
      * logged in.
      * If not, an exception gets thrown.
      *
-     * @param id Long
+     * @param chefId Long
      * @return Logged in chef or exception
      */
-    public Chef login(Long id)
+    public Chef login(Long chefId)
     {
-        Chef chef = chefRepository.findChefById(id).orElseThrow(() ->
-                new ChefNotFoundException("Chef with id: " + id + " not found"));
+        Chef chef = chefRepository.findChefById(chefId).orElseThrow(() ->
+                new ChefNotFoundException("Chef with id: " + chefId + " not found"));
 
         chef.setStatus(Status.LOGGED_IN);
 
