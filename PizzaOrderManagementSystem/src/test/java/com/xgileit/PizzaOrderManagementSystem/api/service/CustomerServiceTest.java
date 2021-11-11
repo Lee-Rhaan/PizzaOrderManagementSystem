@@ -118,7 +118,7 @@ class CustomerServiceTest {
     @Test
     void cancelOrderTest() {
         //Given
-        customerService.cancelOrder(order.getOrderId());
+        customerService.cancelOrderById(order.getOrderId());
 
         //When
         boolean exists = orderRepository.existsById(order.getOrderId());

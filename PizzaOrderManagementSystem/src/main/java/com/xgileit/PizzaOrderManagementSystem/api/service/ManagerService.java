@@ -90,7 +90,7 @@ public class ManagerService {
      * @return String response
      */
     @Transactional
-    public String deleteMenu(Long menuId)
+    public String deleteMenuById(Long menuId)
     {
         menuRepository.deleteMenuById(menuId);
         return "Menu item deleted";
@@ -117,7 +117,7 @@ public class ManagerService {
      * @return String response
      */
     @Transactional
-    public String cancelOrder(Long orderId)
+    public String cancelOrderById(Long orderId)
     {
         orderRepository.deleteOrderById(orderId);
         return "Order canceled";
@@ -247,7 +247,7 @@ public class ManagerService {
      * @return customer object if customer exists in database or Error message if customer
      *         with specified id does not exist in database
      */
-    public Customer findCustomer(Long customerId)
+    public Customer findCustomerById(Long customerId)
     {
         return customerRepository.findCustomerById(customerId).orElseThrow(() -> new
                 CustomerNotFoundException("Customer with id: " + customerId + " not found"));
@@ -260,7 +260,7 @@ public class ManagerService {
      * @return chef object if chef exists in database or Error message if chef
      *        with specified id does not exist in database
      */
-    public Chef findChef(Long chefId)
+    public Chef findChefById(Long chefId)
     {
         return chefRepository.findChefById(chefId).orElseThrow(() -> new
                 ChefNotFoundException("Customer with id: " + chefId + " not found"));
@@ -273,7 +273,7 @@ public class ManagerService {
      * @return delivery person object if delivery person exists in database or Error message if
      *         delivery person with specified id does not exist in database
      */
-    public DeliveryPerson findDeliveryPerson(Long deliveryPersonId)
+    public DeliveryPerson findDeliveryPersonById(Long deliveryPersonId)
     {
         return deliveryPersonRepository.findDeliveryPersonById(deliveryPersonId).orElseThrow(() -> new
                 DeliveryPersonNotFoundException("Customer with id: " + deliveryPersonId + " not found"));

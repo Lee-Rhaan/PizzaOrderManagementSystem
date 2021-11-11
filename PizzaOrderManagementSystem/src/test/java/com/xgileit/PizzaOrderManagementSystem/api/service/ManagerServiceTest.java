@@ -121,7 +121,7 @@ class ManagerServiceTest {
     @Test
     void deleteMenuTest() {
         //Given
-        managerService.deleteMenu(menu.getMenuId());
+        managerService.deleteMenuById(menu.getMenuId());
 
         //When
         boolean exists = menuRepository.existsById(menu.getMenuId());
@@ -142,7 +142,7 @@ class ManagerServiceTest {
     @Test
     void cancelOrderTest() {
         //Given
-        managerService.cancelOrder(order.getOrderId());
+        managerService.cancelOrderById(order.getOrderId());
 
         //When
         boolean exists = orderRepository.existsById(order.getOrderId());
@@ -303,7 +303,7 @@ class ManagerServiceTest {
         when(customerRepository.findCustomerById(customer.getCustomerId())).thenReturn(Optional.of(customer));
 
         //Then
-        assertThat(managerService.findCustomer(customer.getCustomerId())).isEqualTo(customer);
+        assertThat(managerService.findCustomerById(customer.getCustomerId())).isEqualTo(customer);
     }
 
     @Test
@@ -324,7 +324,7 @@ class ManagerServiceTest {
         when(chefRepository.findChefById(chef.getChefId())).thenReturn(Optional.of(chef));
 
         //Then
-        assertThat(managerService.findChef(chef.getChefId())).isEqualTo(chef);
+        assertThat(managerService.findChefById(chef.getChefId())).isEqualTo(chef);
     }
 
     @Test
@@ -346,7 +346,7 @@ class ManagerServiceTest {
                 .thenReturn(Optional.of(deliveryPerson));
 
         //Then
-        assertThat(managerService.findDeliveryPerson(deliveryPerson.getDeliveryPersonId()))
+        assertThat(managerService.findDeliveryPersonById(deliveryPerson.getDeliveryPersonId()))
                 .isEqualTo(deliveryPerson);
     }
 

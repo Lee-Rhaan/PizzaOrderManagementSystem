@@ -109,7 +109,7 @@ public class CustomerService {
      * @return String response
      */
     @Transactional
-    public String cancelOrder(Long orderId)
+    public String cancelOrderById(Long orderId)
     {
         orderRepository.deleteOrderById(orderId);
         return "Order canceled";

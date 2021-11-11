@@ -92,9 +92,9 @@ public class ManagerController {
      * @return String response if request were successful
      */
     @DeleteMapping("/menu/delete/{menuId}")
-    public ResponseEntity<String> deleteMenu(@PathVariable("menuId") Long menuId)
+    public ResponseEntity<String> deleteMenuById(@PathVariable("menuId") Long menuId)
     {
-        String response = managerService.deleteMenu(menuId);
+        String response = managerService.deleteMenuById(menuId);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -122,9 +122,9 @@ public class ManagerController {
      * @return String response if request were successful
      */
     @DeleteMapping("/orders/cancel/{orderId}")
-    public ResponseEntity<String> cancelOrder(@PathVariable("orderId") Long orderId)
+    public ResponseEntity<String> cancelOrderById(@PathVariable("orderId") Long orderId)
     {
-        String response = managerService.cancelOrder(orderId);
+        String response = managerService.cancelOrderById(orderId);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -185,7 +185,7 @@ public class ManagerController {
      *         with specified id does not exist in database
      */
     @GetMapping("/reviews/review/{reviewId}")
-    public ResponseEntity<Review> findReview(@PathVariable("reviewId") Long reviewId)
+    public ResponseEntity<Review> findReviewById(@PathVariable("reviewId") Long reviewId)
     {
         Review review = managerService.findReviewById(reviewId);
         return new ResponseEntity<>(review, HttpStatus.OK);
@@ -200,7 +200,7 @@ public class ManagerController {
      *         with specified id does not exist in database
      */
     @GetMapping("/orders/order/{orderId}")
-    public ResponseEntity<Order> findOrder(@PathVariable("orderId") Long orderId)
+    public ResponseEntity<Order> findOrderById(@PathVariable("orderId") Long orderId)
     {
         Order order = managerService.findOrderById(orderId);
         return new ResponseEntity<>(order, HttpStatus.OK);
@@ -215,7 +215,7 @@ public class ManagerController {
      *         with specified id does not exist in database
      */
     @GetMapping("/menu/find/{menuId}")
-    public ResponseEntity<Menu> findMenu(@PathVariable("menuId") Long menuId)
+    public ResponseEntity<Menu> findMenuById(@PathVariable("menuId") Long menuId)
     {
         Menu menu = managerService.findMenuById(menuId);
         return new ResponseEntity<>(menu, HttpStatus.OK);
@@ -274,9 +274,9 @@ public class ManagerController {
      *         with specified id does not exist in database
      */
     @GetMapping("/customers/customer/{customerId}")
-    public ResponseEntity<Customer> findCustomer(@PathVariable("customerId") Long customerId)
+    public ResponseEntity<Customer> findCustomerById(@PathVariable("customerId") Long customerId)
     {
-        Customer customer = managerService.findCustomer(customerId);
+        Customer customer = managerService.findCustomerById(customerId);
         return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
@@ -289,9 +289,9 @@ public class ManagerController {
      *         with specified id does not exist in database
      */
     @GetMapping("/chefs/chef/{chefId}")
-    public ResponseEntity<Chef> findChef(@PathVariable("chefId") Long chefId)
+    public ResponseEntity<Chef> findChefById(@PathVariable("chefId") Long chefId)
     {
-        Chef chef = managerService.findChef(chefId);
+        Chef chef = managerService.findChefById(chefId);
         return new ResponseEntity<>(chef, HttpStatus.OK);
     }
 
@@ -304,9 +304,9 @@ public class ManagerController {
      *         delivery person with specified id does not exist in database
      */
     @GetMapping("/deliveryPerson/find/{deliveryPersonId}")
-    public ResponseEntity<DeliveryPerson> findDeliveryPerson(@PathVariable("deliveryPersonId") Long deliveryPersonId)
+    public ResponseEntity<DeliveryPerson> findDeliveryPersonById(@PathVariable("deliveryPersonId") Long deliveryPersonId)
     {
-        DeliveryPerson deliveryPerson = managerService.findDeliveryPerson(deliveryPersonId);
+        DeliveryPerson deliveryPerson = managerService.findDeliveryPersonById(deliveryPersonId);
         return new ResponseEntity<>(deliveryPerson, HttpStatus.OK);
     }
 

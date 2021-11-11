@@ -109,9 +109,9 @@ public class CustomerController {
      * @return String response if request were successful
      */
     @DeleteMapping("/orders/cancel/{orderId}")
-    public ResponseEntity<String> cancelOrder(@PathVariable("orderId") Long orderId)
+    public ResponseEntity<String> cancelOrderById(@PathVariable("orderId") Long orderId)
     {
-        String response = customerService.cancelOrder(orderId);
+        String response = customerService.cancelOrderById(orderId);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
