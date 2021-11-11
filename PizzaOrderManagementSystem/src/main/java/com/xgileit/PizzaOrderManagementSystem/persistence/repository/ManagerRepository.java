@@ -17,5 +17,5 @@ public interface ManagerRepository extends JpaRepository<Manager, Long> {
      */
 
     //setting it to optional, because this method may or may not return a value.
-    Optional<Manager> findManagerById(Long id);
+    Optional<Manager> findManagerById(Long managerId);
 }

@@ -17,5 +17,5 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
      */
 
     //setting it to optional, because this method may or may not return a value.
-    Optional<Review> findReviewById(Long id);
+    Optional<Review> findReviewById(Long reviewId);
 }

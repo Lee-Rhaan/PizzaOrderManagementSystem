@@ -17,5 +17,5 @@ public interface DeliveryPersonRepository extends JpaRepository<DeliveryPerson, 
      */
 
     //setting it to optional, because this method may or may not return a value.
-    Optional<DeliveryPerson> findDeliveryPersonById(Long id);
+    Optional<DeliveryPerson> findDeliveryPersonById(Long deliveryPersonId);
 }

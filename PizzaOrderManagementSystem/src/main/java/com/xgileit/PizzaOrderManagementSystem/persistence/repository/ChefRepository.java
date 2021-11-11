@@ -17,5 +17,5 @@ public interface ChefRepository extends JpaRepository<Chef, Long> {
      */
 
     //setting it to optional, because this method may or may not return a value.
-    Optional<Chef> findChefById(Long id);
+    Optional<Chef> findChefById(Long chefId);
 }

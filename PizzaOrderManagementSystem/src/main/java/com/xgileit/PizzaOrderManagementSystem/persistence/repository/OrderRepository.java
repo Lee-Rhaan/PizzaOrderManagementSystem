@@ -15,8 +15,8 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
      * These are custom abstract methods I am going to be implementing in my service class.
      * The names of these methods are going to be read like queries by Spring.
      */
-    void deleteOrderById(Long id);
+    void deleteOrderById(Long orderId);
 
     //setting it to optional, because this method may or may not return a value.
-    Optional<Order> findOrderById(Long id);
+    Optional<Order> findOrderById(Long orderId);
 }

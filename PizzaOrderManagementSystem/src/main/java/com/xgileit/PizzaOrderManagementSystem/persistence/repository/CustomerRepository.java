@@ -17,5 +17,5 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
      */
 
     //setting it to optional, because this method may or may not return a value.
-    Optional<Customer> findCustomerById(Long id);
+    Optional<Customer> findCustomerById(Long customerId);
 }

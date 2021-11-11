@@ -15,8 +15,8 @@ public interface MenuRepository extends JpaRepository<Menu, Long> {
      * These are custom abstract methods I am going to be implementing in my service class.
      * The names of these methods are going to be read like queries by Spring.
      */
-    void deleteMenuById(Long id);
+    void deleteMenuById(Long menuId);
 
     //setting it to optional, because this method may or may not return a value.
-    Optional<Menu> findMenuById(Long id);
+    Optional<Menu> findMenuById(Long menuId);
 }
