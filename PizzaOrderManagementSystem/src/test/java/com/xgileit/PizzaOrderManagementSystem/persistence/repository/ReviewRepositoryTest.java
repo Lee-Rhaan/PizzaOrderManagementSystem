@@ -1,7 +1,7 @@
 package com.xgileit.PizzaOrderManagementSystem.persistence.repository;
 
-import com.xgileit.PizzaOrderManagementSystem.infrastructure.exceptions.ReviewNotFoundException;
-import com.xgileit.PizzaOrderManagementSystem.persistence.model.Review;
+import com.xgileit.PizzaOrderManagementSystem.infrastructure.exceptions.CustomerReviewNotFoundException;
+import com.xgileit.PizzaOrderManagementSystem.persistence.model.CustomerReview;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,27 +17,27 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class ReviewRepositoryTest {
 
     @Autowired
-    private ReviewRepository reviewRepository;
+    private CustomerReviewRepository customerReviewRepository;
 
     //After each test -> I want to delete everything
     //Which means for each test we'll have a clean slate
     @AfterEach
     void tearDown() {
-        reviewRepository.deleteAll();
+        customerReviewRepository.deleteAll();
     }
 
-    Review review = new Review(5, "Experience was good");
+    CustomerReview customerReview = new CustomerReview(5, "Experience was good");
 
     @Test
     void findReviewByIdTestSuccessful() {
         //Given
-        reviewRepository.save(review);
+        customerReviewRepository.save(customerReview);
 
         //When
-        Optional<Review> expectedValue = reviewRepository.findReviewById(review.getReviewId());
+        Optional<CustomerReview> expectedValue = customerReviewRepository.findReviewById(customerReview.getReviewId());
 
         //Then
-        assertThat(expectedValue).isEqualTo(Optional.of(review));
+        assertThat(expectedValue).isEqualTo(Optional.of(customerReview));
     }
 
     @Test
@@ -45,8 +45,8 @@ class ReviewRepositoryTest {
         String message = "Review not found";
 
         //Given
-        Exception expected = assertThrows(ReviewNotFoundException.class,
-                () -> {throw new ReviewNotFoundException(message);});
+        Exception expected = assertThrows(CustomerReviewNotFoundException.class,
+                () -> {throw new CustomerReviewNotFoundException(message);});
 
         //Then
         assertEquals(message, expected.getMessage());

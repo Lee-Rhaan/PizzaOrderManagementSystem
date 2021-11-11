@@ -26,7 +26,7 @@ public class ManagerService {
      * Here I am injecting all these repositories with the @RequiredArgsConstructor in order to
      * have access to all it's functionalities.
      */
-    private final ReviewRepository reviewRepository;
+    private final CustomerReviewRepository customerReviewRepository;
     private final ManagerRepository managerRepository;
     private final MenuRepository menuRepository;
     private final OrderRepository orderRepository;
@@ -164,9 +164,9 @@ public class ManagerService {
      *
      * @return List of all reviews stored in the database
      */
-    public List<Review> listAllReviews()
+    public List<CustomerReview> listAllReviews()
     {
-        return reviewRepository.findAll();
+        return customerReviewRepository.findAll();
     }
 
     /**
@@ -176,10 +176,10 @@ public class ManagerService {
      * @return review object if review exists in database or Error message if review
      *         with specified id does not exist in database
      */
-    public Review findReviewById(Long reviewId)
+    public CustomerReview findReviewById(Long reviewId)
     {
-        return reviewRepository.findReviewById(reviewId).orElseThrow(() ->
-                new ReviewNotFoundException("Review with id: " + reviewId + " not found"));
+        return customerReviewRepository.findReviewById(reviewId).orElseThrow(() ->
+                new CustomerReviewNotFoundException("Review with id: " + reviewId + " not found"));
     }
 
     /**

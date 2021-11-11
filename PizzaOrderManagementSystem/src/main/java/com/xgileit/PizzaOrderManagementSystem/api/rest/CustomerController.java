@@ -4,7 +4,7 @@ import com.xgileit.PizzaOrderManagementSystem.api.service.CustomerService;
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.Customer;
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.Menu;
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.Order;
-import com.xgileit.PizzaOrderManagementSystem.persistence.model.Review;
+import com.xgileit.PizzaOrderManagementSystem.persistence.model.CustomerReview;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -119,14 +119,14 @@ public class CustomerController {
      * How to access this method: "/api/v1/customers/reviews/submit"
      * Review gets created and saved in database
      *
-     * @param review object
+     * @param customerReview object
      * @return saved review if request were successful
      */
     @PostMapping("/reviews/submit")
-    public ResponseEntity<Review> submitReview(@RequestBody Review review)
+    public ResponseEntity<CustomerReview> submitReview(@RequestBody CustomerReview customerReview)
     {
-        Review newReview = customerService.submitReview(review);
-        return new ResponseEntity<>(newReview, HttpStatus.CREATED);
+        CustomerReview newCustomerReview = customerService.submitReview(customerReview);
+        return new ResponseEntity<>(newCustomerReview, HttpStatus.CREATED);
     }
 
     /**

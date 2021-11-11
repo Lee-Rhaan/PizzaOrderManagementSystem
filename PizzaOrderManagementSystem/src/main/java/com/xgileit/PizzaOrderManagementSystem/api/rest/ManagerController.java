@@ -170,10 +170,10 @@ public class ManagerController {
      * @return List of all customer reviews
      */
     @GetMapping("/reviews")
-    public ResponseEntity<List<Review>> listAllReviews()
+    public ResponseEntity<List<CustomerReview>> listAllReviews()
     {
-        List<Review> allReviews = managerService.listAllReviews();
-        return new ResponseEntity<>(allReviews, HttpStatus.OK);
+        List<CustomerReview> allCustomerReviews = managerService.listAllReviews();
+        return new ResponseEntity<>(allCustomerReviews, HttpStatus.OK);
     }
 
     /**
@@ -185,10 +185,10 @@ public class ManagerController {
      *         with specified id does not exist in database
      */
     @GetMapping("/reviews/review/{reviewId}")
-    public ResponseEntity<Review> findReviewById(@PathVariable("reviewId") Long reviewId)
+    public ResponseEntity<CustomerReview> findReviewById(@PathVariable("reviewId") Long reviewId)
     {
-        Review review = managerService.findReviewById(reviewId);
-        return new ResponseEntity<>(review, HttpStatus.OK);
+        CustomerReview customerReview = managerService.findReviewById(reviewId);
+        return new ResponseEntity<>(customerReview, HttpStatus.OK);
     }
 
     /**

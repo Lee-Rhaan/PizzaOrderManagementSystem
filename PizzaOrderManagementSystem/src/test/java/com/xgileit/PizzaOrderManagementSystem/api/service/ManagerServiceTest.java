@@ -34,7 +34,7 @@ class ManagerServiceTest {
     private OrderRepository orderRepository;
 
     @Mock
-    private ReviewRepository reviewRepository;
+    private CustomerReviewRepository customerReviewRepository;
 
     @Mock
     private ChefRepository chefRepository;
@@ -56,7 +56,7 @@ class ManagerServiceTest {
     Order order = new Order("2", "4",
             "Vegan", "LARGE", "Water", "Large");
 
-    Review review = new Review(5, "Experience was good");
+    CustomerReview customerReview = new CustomerReview(5, "Experience was good");
 
     Chef chef = new Chef("King", "kingdom@gmail.com",
             "qwerty", "10111", "CPT");
@@ -195,16 +195,16 @@ class ManagerServiceTest {
         managerService.listAllReviews();
 
         //Then
-        verify(reviewRepository).findAll();
+        verify(customerReviewRepository).findAll();
     }
 
     @Test
     void findReviewByIdTestSuccessful() {
         //When
-        when(reviewRepository.findReviewById(review.getReviewId())).thenReturn(Optional.of(review));
+        when(customerReviewRepository.findReviewById(customerReview.getReviewId())).thenReturn(Optional.of(customerReview));
 
         //Then
-        assertThat(managerService.findReviewById(review.getReviewId())).isEqualTo(review);
+        assertThat(managerService.findReviewById(customerReview.getReviewId())).isEqualTo(customerReview);
     }
 
     @Test
@@ -212,8 +212,8 @@ class ManagerServiceTest {
         String message = "Review not found";
 
         //Given
-        Exception expected = assertThrows(ReviewNotFoundException.class,
-                () -> {throw new ReviewNotFoundException(message);});
+        Exception expected = assertThrows(CustomerReviewNotFoundException.class,
+                () -> {throw new CustomerReviewNotFoundException(message);});
 
         //Then
         assertEquals(message, expected.getMessage());

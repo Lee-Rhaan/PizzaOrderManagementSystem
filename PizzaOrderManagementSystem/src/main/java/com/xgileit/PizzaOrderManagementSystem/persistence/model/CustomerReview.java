@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @Entity
-public class Review implements Serializable {
+public class CustomerReview implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,7 +27,7 @@ public class Review implements Serializable {
     @ManyToOne
     private Customer customerReview;
 
-    public Review(Integer rating, String feedback)
+    public CustomerReview(Integer rating, String feedback)
     {
         this.customerRating = rating;
         this.customerFeedback = feedback;

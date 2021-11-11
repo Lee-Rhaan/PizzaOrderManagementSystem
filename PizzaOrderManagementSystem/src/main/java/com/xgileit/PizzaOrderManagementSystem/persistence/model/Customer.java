@@ -38,7 +38,7 @@ public class Customer implements Serializable {
     //mappedBy indicates that this side is the inverse side, and that the mapping is defined
     //by the attribute customerReview at the other side of the association.
     @OneToMany (mappedBy = "customerReview")
-    private List<Review> reviews;
+    private List<CustomerReview> customerReviews;
 
     public Customer(String username, String email, String password, String phone, String address)
     {

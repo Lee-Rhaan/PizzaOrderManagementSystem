@@ -6,11 +6,11 @@ import com.xgileit.PizzaOrderManagementSystem.infrastructure.exceptions.Customer
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.Customer;
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.Menu;
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.Order;
-import com.xgileit.PizzaOrderManagementSystem.persistence.model.Review;
+import com.xgileit.PizzaOrderManagementSystem.persistence.model.CustomerReview;
 import com.xgileit.PizzaOrderManagementSystem.persistence.repository.CustomerRepository;
 import com.xgileit.PizzaOrderManagementSystem.persistence.repository.MenuRepository;
 import com.xgileit.PizzaOrderManagementSystem.persistence.repository.OrderRepository;
-import com.xgileit.PizzaOrderManagementSystem.persistence.repository.ReviewRepository;
+import com.xgileit.PizzaOrderManagementSystem.persistence.repository.CustomerReviewRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,7 +37,7 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final MenuRepository menuRepository;
     private final OrderRepository orderRepository;
-    private final ReviewRepository reviewRepository;
+    private final CustomerReviewRepository customerReviewRepository;
 
     /**
      * This method registers and adds a new customer to the database.
@@ -118,12 +118,12 @@ public class CustomerService {
     /**
      * Review gets created and saved in database
      *
-     * @param review object
+     * @param customerReview object
      * @return saved review
      */
-    public Review submitReview(Review review)
+    public CustomerReview submitReview(CustomerReview customerReview)
     {
-        return reviewRepository.save(review);
+        return customerReviewRepository.save(customerReview);
     }
 
     /**

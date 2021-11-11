@@ -5,11 +5,11 @@ import com.xgileit.PizzaOrderManagementSystem.infrastructure.exceptions.Customer
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.Customer;
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.Menu;
 import com.xgileit.PizzaOrderManagementSystem.persistence.model.Order;
-import com.xgileit.PizzaOrderManagementSystem.persistence.model.Review;
+import com.xgileit.PizzaOrderManagementSystem.persistence.model.CustomerReview;
 import com.xgileit.PizzaOrderManagementSystem.persistence.repository.CustomerRepository;
 import com.xgileit.PizzaOrderManagementSystem.persistence.repository.MenuRepository;
 import com.xgileit.PizzaOrderManagementSystem.persistence.repository.OrderRepository;
-import com.xgileit.PizzaOrderManagementSystem.persistence.repository.ReviewRepository;
+import com.xgileit.PizzaOrderManagementSystem.persistence.repository.CustomerReviewRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -37,7 +37,7 @@ class CustomerServiceTest {
     private OrderRepository orderRepository;
 
     @Mock
-    private ReviewRepository reviewRepository;
+    private CustomerReviewRepository customerReviewRepository;
 
     @InjectMocks
     private CustomerService customerService;
@@ -50,7 +50,7 @@ class CustomerServiceTest {
     Order order = new Order("2", "4",
             "Vegan", "LARGE", "Water", "Large");
 
-    Review review = new Review(5, "Experience was good");
+    CustomerReview customerReview = new CustomerReview(5, "Experience was good");
 
     @Test
     void registerTest() {
@@ -130,16 +130,16 @@ class CustomerServiceTest {
     @Test
     void submitReviewTest() {
         //When
-        customerService.submitReview(review);
+        customerService.submitReview(customerReview);
 
         //Then
-        ArgumentCaptor<Review> reviewArgumentCaptor = ArgumentCaptor.forClass(Review.class);
+        ArgumentCaptor<CustomerReview> reviewArgumentCaptor = ArgumentCaptor.forClass(CustomerReview.class);
 
-        verify(reviewRepository).save(reviewArgumentCaptor.capture());
+        verify(customerReviewRepository).save(reviewArgumentCaptor.capture());
 
-        Review capturedReview = reviewArgumentCaptor.getValue();
+        CustomerReview capturedCustomerReview = reviewArgumentCaptor.getValue();
 
-        assertThat(capturedReview).isEqualTo(review);
+        assertThat(capturedCustomerReview).isEqualTo(customerReview);
     }
 
     @Test
