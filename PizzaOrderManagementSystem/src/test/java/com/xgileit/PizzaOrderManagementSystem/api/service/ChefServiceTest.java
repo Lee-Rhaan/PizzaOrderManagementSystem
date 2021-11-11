@@ -39,10 +39,10 @@ class ChefServiceTest {
     @Test
     void loginTestSuccessful() {
         //When
-        when(chefRepository.findChefById(chef.getChefId())).thenReturn(Optional.of(chef));
+        when(chefRepository.findChefById(chef.getId())).thenReturn(Optional.of(chef));
 
         //Then
-        assertThat(chefService.login(chef.getChefId())).isEqualTo(chef);
+        assertThat(chefService.login(chef.getId())).isEqualTo(chef);
     }
 
     @Test

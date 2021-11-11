@@ -35,7 +35,7 @@ class ManagerRepositoryTest {
         managerRepository.save(manager);
 
         //When
-        Optional<Manager> expectedValue = managerRepository.findManagerById(manager.getManagerId());
+        Optional<Manager> expectedValue = managerRepository.findManagerById(manager.getId());
 
         //Then
         assertThat(expectedValue).isEqualTo(Optional.of(manager));

@@ -35,8 +35,8 @@ class OrderRepositoryTest {
         orderRepository.save(order);
 
         //When
-        orderRepository.deleteOrderById(order.getOrderId());
-        boolean exists = orderRepository.existsById(order.getOrderId());
+        orderRepository.deleteOrderById(order.getId());
+        boolean exists = orderRepository.existsById(order.getId());
 
         //Then
         assertThat(exists).isFalse();
@@ -48,7 +48,7 @@ class OrderRepositoryTest {
         orderRepository.save(order);
 
         //When
-        Optional<Order> expectedValue = orderRepository.findOrderById(order.getOrderId());
+        Optional<Order> expectedValue = orderRepository.findOrderById(order.getId());
 
         //Then
         assertThat(expectedValue).isEqualTo(Optional.of(order));

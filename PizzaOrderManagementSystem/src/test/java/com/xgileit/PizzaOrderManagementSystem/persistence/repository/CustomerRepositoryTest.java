@@ -35,7 +35,7 @@ class CustomerRepositoryTest {
         customerRepository.save(customer);
 
         //When
-        Optional<Customer> expectedValue = customerRepository.findCustomerById(customer.getCustomerId());
+        Optional<Customer> expectedValue = customerRepository.findCustomerById(customer.getId());
 
         //Then
         assertThat(expectedValue).isEqualTo(Optional.of(customer));

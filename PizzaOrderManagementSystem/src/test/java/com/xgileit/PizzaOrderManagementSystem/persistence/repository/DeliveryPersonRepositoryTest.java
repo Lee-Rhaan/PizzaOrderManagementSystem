@@ -36,7 +36,7 @@ class DeliveryPersonRepositoryTest {
 
         //When
         Optional<DeliveryPerson> expectedValue = deliveryPersonRepository.
-                findDeliveryPersonById(deliveryPerson.getDeliveryPersonId());
+                findDeliveryPersonById(deliveryPerson.getId());
 
         //Then
         assertThat(expectedValue).isEqualTo(Optional.of(deliveryPerson));

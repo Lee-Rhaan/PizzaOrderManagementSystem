@@ -34,7 +34,7 @@ class ReviewRepositoryTest {
         customerReviewRepository.save(customerReview);
 
         //When
-        Optional<CustomerReview> expectedValue = customerReviewRepository.findReviewById(customerReview.getReviewId());
+        Optional<CustomerReview> expectedValue = customerReviewRepository.findReviewById(customerReview.getId());
 
         //Then
         assertThat(expectedValue).isEqualTo(Optional.of(customerReview));

@@ -19,8 +19,7 @@ public class Order implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long orderId;
+    private Long id;
 
     @Column(name = "pizza_amount")
     private String amountOfPizzas;

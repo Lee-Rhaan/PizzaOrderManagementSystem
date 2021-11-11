@@ -17,8 +17,7 @@ public class CustomerReview implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long reviewId;
+    private Long id;
     @Column(name = "rating")
     private Integer customerRating;
     @Column(name = "feedback")

@@ -19,8 +19,7 @@ public class Manager implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long managerId;
+    private Long id;
     private String username;
     private String email;
     private String password;
