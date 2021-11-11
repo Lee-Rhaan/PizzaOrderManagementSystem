@@ -67,10 +67,10 @@ class ManagerServiceTest {
     @Test
     void loginTestSuccessful() {
         //When
-        when(managerRepository.findManagerById(manager.getId())).thenReturn(Optional.of(manager));
+        when(managerRepository.findManagerById(manager.getManagerId())).thenReturn(Optional.of(manager));
 
         //Then
-        assertThat(managerService.login(manager.getId())).isEqualTo(manager);
+        assertThat(managerService.login(manager.getManagerId())).isEqualTo(manager);
     }
 
     @Test
@@ -121,10 +121,10 @@ class ManagerServiceTest {
     @Test
     void deleteMenuTest() {
         //Given
-        managerService.deleteMenu(menu.getId());
+        managerService.deleteMenu(menu.getMenuId());
 
         //When
-        boolean exists = menuRepository.existsById(menu.getId());
+        boolean exists = menuRepository.existsById(menu.getMenuId());
 
         //Then
         assertThat(exists).isFalse();
@@ -142,10 +142,10 @@ class ManagerServiceTest {
     @Test
     void cancelOrderTest() {
         //Given
-        managerService.cancelOrder(order.getId());
+        managerService.cancelOrder(order.getOrderId());
 
         //When
-        boolean exists = orderRepository.existsById(order.getId());
+        boolean exists = orderRepository.existsById(order.getOrderId());
 
         //Then
         assertThat(exists).isFalse();
@@ -201,10 +201,10 @@ class ManagerServiceTest {
     @Test
     void findReviewByIdTestSuccessful() {
         //When
-        when(reviewRepository.findReviewById(review.getId())).thenReturn(Optional.of(review));
+        when(reviewRepository.findReviewById(review.getReviewId())).thenReturn(Optional.of(review));
 
         //Then
-        assertThat(managerService.findReviewById(review.getId())).isEqualTo(review);
+        assertThat(managerService.findReviewById(review.getReviewId())).isEqualTo(review);
     }
 
     @Test
@@ -222,10 +222,10 @@ class ManagerServiceTest {
     @Test
     void findOrderByIdTestSuccessful() {
         //When
-        when(orderRepository.findOrderById(order.getId())).thenReturn(Optional.of(order));
+        when(orderRepository.findOrderById(order.getOrderId())).thenReturn(Optional.of(order));
 
         //Then
-        assertThat(managerService.findOrderById(order.getId())).isEqualTo(order);
+        assertThat(managerService.findOrderById(order.getOrderId())).isEqualTo(order);
     }
 
     @Test
@@ -243,10 +243,10 @@ class ManagerServiceTest {
     @Test
     void findMenuByIdTestSuccessful() {
         //When
-        when(menuRepository.findMenuById(menu.getId())).thenReturn(Optional.of(menu));
+        when(menuRepository.findMenuById(menu.getMenuId())).thenReturn(Optional.of(menu));
 
         //Then
-        assertThat(managerService.findMenuById(menu.getId())).isEqualTo(menu);
+        assertThat(managerService.findMenuById(menu.getMenuId())).isEqualTo(menu);
     }
 
     @Test
@@ -300,10 +300,10 @@ class ManagerServiceTest {
     @Test
     void findCustomerTestSuccessful() {
         //When
-        when(customerRepository.findCustomerById(customer.getId())).thenReturn(Optional.of(customer));
+        when(customerRepository.findCustomerById(customer.getCustomerId())).thenReturn(Optional.of(customer));
 
         //Then
-        assertThat(managerService.findCustomer(customer.getId())).isEqualTo(customer);
+        assertThat(managerService.findCustomer(customer.getCustomerId())).isEqualTo(customer);
     }
 
     @Test
@@ -321,10 +321,10 @@ class ManagerServiceTest {
     @Test
     void findChefTestSuccessful() {
         //When
-        when(chefRepository.findChefById(chef.getId())).thenReturn(Optional.of(chef));
+        when(chefRepository.findChefById(chef.getChefId())).thenReturn(Optional.of(chef));
 
         //Then
-        assertThat(managerService.findChef(chef.getId())).isEqualTo(chef);
+        assertThat(managerService.findChef(chef.getChefId())).isEqualTo(chef);
     }
 
     @Test
@@ -342,11 +342,11 @@ class ManagerServiceTest {
     @Test
     void findDeliveryPersonTestSuccessful() {
         //When
-        when(deliveryPersonRepository.findDeliveryPersonById(deliveryPerson.getId()))
+        when(deliveryPersonRepository.findDeliveryPersonById(deliveryPerson.getDeliveryPersonId()))
                 .thenReturn(Optional.of(deliveryPerson));
 
         //Then
-        assertThat(managerService.findDeliveryPerson(deliveryPerson.getId()))
+        assertThat(managerService.findDeliveryPerson(deliveryPerson.getDeliveryPersonId()))
                 .isEqualTo(deliveryPerson);
     }
 

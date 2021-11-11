@@ -34,8 +34,8 @@ class MenuRepositoryTest {
         menuRepository.save(menu);
 
         //When
-        menuRepository.deleteMenuById(menu.getId());
-        boolean exists = menuRepository.existsById(menu.getId());
+        menuRepository.deleteMenuById(menu.getMenuId());
+        boolean exists = menuRepository.existsById(menu.getMenuId());
 
         //Then
         assertThat(exists).isFalse();
@@ -47,7 +47,7 @@ class MenuRepositoryTest {
         menuRepository.save(menu);
 
         //When
-        Optional<Menu> expectedValue = menuRepository.findMenuById(menu.getId());
+        Optional<Menu> expectedValue = menuRepository.findMenuById(menu.getMenuId());
 
         //Then
         assertThat(expectedValue).isEqualTo(Optional.of(menu));

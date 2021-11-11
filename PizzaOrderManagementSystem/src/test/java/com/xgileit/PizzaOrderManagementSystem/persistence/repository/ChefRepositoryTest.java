@@ -35,7 +35,7 @@ class ChefRepositoryTest {
         chefRepository.save(chef);
 
         //When
-        Optional<Chef> expectedValue = chefRepository.findChefById(chef.getId());
+        Optional<Chef> expectedValue = chefRepository.findChefById(chef.getChefId());
 
         //Then
         assertThat(expectedValue).isEqualTo(Optional.of(chef));

@@ -39,11 +39,11 @@ class DeliveryPersonServiceTest {
     @Test
     void loginTestSuccessful() {
         //When
-        when(deliveryPersonRepository.findDeliveryPersonById(deliveryPerson.getId()))
+        when(deliveryPersonRepository.findDeliveryPersonById(deliveryPerson.getDeliveryPersonId()))
                 .thenReturn(Optional.of(deliveryPerson));
 
         //Then
-        assertThat(deliveryPersonService.login(deliveryPerson.getId())).isEqualTo(deliveryPerson);
+        assertThat(deliveryPersonService.login(deliveryPerson.getDeliveryPersonId())).isEqualTo(deliveryPerson);
     }
 
     @Test

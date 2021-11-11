@@ -64,10 +64,10 @@ class CustomerServiceTest {
     @Test
     void loginTestSuccessful() {
         //When
-        when(customerRepository.findCustomerById(customer.getId())).thenReturn(Optional.of(customer));
+        when(customerRepository.findCustomerById(customer.getCustomerId())).thenReturn(Optional.of(customer));
 
         //Then
-        assertThat(customerService.login(customer.getId())).isEqualTo(customer);
+        assertThat(customerService.login(customer.getCustomerId())).isEqualTo(customer);
     }
 
     @Test
@@ -118,10 +118,10 @@ class CustomerServiceTest {
     @Test
     void cancelOrderTest() {
         //Given
-        customerService.cancelOrder(order.getId());
+        customerService.cancelOrder(order.getOrderId());
 
         //When
-        boolean exists = orderRepository.existsById(order.getId());
+        boolean exists = orderRepository.existsById(order.getOrderId());
 
         //Then
         assertThat(exists).isFalse();
