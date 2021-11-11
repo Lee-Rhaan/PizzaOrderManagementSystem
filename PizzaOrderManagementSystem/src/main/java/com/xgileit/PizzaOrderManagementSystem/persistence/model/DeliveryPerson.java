@@ -29,6 +29,7 @@ public class DeliveryPerson implements Serializable {
     private String address;
     @Column(name = "employee_code")
     private String employeeCode = UUID.randomUUID().toString();
+    @Column(name = "active_status")
     private ActiveStatus activeStatus;
 
     public DeliveryPerson(String username, String email, String password, String phone, String address)
