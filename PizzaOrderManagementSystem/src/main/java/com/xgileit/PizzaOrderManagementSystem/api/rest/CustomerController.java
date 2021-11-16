@@ -72,13 +72,13 @@ public class CustomerController {
     }
 
     /**
-     * How to access this method: "/api/v1/customers/orders/create"
+     * How to access this method: "/api/v1/customers/orders"
      * Order gets created and stored in database
      *
      * @param order object
      * @return saved order if request were successful
      */
-    @PostMapping("/orders/create")
+    @PostMapping("/orders")
     public ResponseEntity<Order> createOrder(@RequestBody Order order)
     {
         Order newOrder = customerService.createOrder(order);
@@ -86,14 +86,14 @@ public class CustomerController {
     }
 
     /**
-     * How to access this method: "/api/v1/customers/orders/update"
+     * How to access this method: "/api/v1/customers/orders"
      * This method will replace the old order object with this newly updated order object
      * if the order object exists in the database.
      *
      * @param order object
      * @return updated order if request were successful
      */
-    @PutMapping("/orders/update")
+    @PutMapping("/orders")
     public ResponseEntity<Order> updateOrder(@RequestBody Order order)
     {
         Order updatedOrder = customerService.updateOrder(order);
@@ -101,14 +101,14 @@ public class CustomerController {
     }
 
     /**
-     * How to access this method: "/api/v1/customers/orders/cancel/{orderId}"
+     * How to access this method: "/api/v1/customers/orders/{orderId}"
      * This method will delete an order object from the database by using it's id as
      * a reference.
      *
      * @param orderId Long
      * @return String response if request were successful
      */
-    @DeleteMapping("/orders/cancel/{orderId}")
+    @DeleteMapping("/orders/{orderId}")
     public ResponseEntity<String> cancelOrderById(@PathVariable("orderId") Long orderId)
     {
         String response = customerService.cancelOrderById(orderId);
@@ -116,13 +116,13 @@ public class CustomerController {
     }
 
     /**
-     * How to access this method: "/api/v1/customers/reviews/submit"
+     * How to access this method: "/api/v1/customers/reviews"
      * Review gets created and saved in database
      *
      * @param customerReview object
      * @return saved review if request were successful
      */
-    @PostMapping("/reviews/submit")
+    @PostMapping("/reviews")
     public ResponseEntity<CustomerReview> submitReview(@RequestBody CustomerReview customerReview)
     {
         CustomerReview newCustomerReview = customerService.submitReview(customerReview);
