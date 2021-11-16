@@ -12,11 +12,13 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.ArrayList;
@@ -87,7 +89,18 @@ class ManagerControllerTest {
     }
 
     @Test
-    void createMenuTest() {
+    void createMenuTest() throws Exception {
+        Menu savedMenu = new Menu("Vegan", "Large", "Water", "Large");
+        savedMenu.setId(1l);
+
+        Mockito.when(managerService.createMenu(menu)).thenReturn(savedMenu);
+
+        menu.setId(savedMenu.getId());
+
+        mockMvc.perform(post("http://localhost:8080/api/v1/admins/menu")
+                .contentType(MediaType.APPLICATION_JSON).characterEncoding("utf-8")
+                        .content(objectMapper.writeValueAsString(menu)))
+                .andExpect(status().isCreated()).andExpect(content().string(objectMapper.writeValueAsString(menu)));
     }
 
     @Test
