@@ -69,7 +69,21 @@ class ManagerControllerTest {
     }
 
     @Test
-    void viewMenuTest() {
+    void viewMenuTest() throws Exception {
+        List<Menu> listMenu = new ArrayList<>();
+        listMenu.add(menu);
+
+        Mockito.when(managerService.viewMenu()).thenReturn(listMenu);
+
+        MvcResult mvcResult = mockMvc.perform(get("http://localhost:8080/api/v1/admins/menu"))
+                .andExpect(status().isOk()).andReturn();
+
+        String actualJsonResponse = mvcResult.getResponse().getContentAsString();
+        System.out.println(actualJsonResponse);
+
+        String expectedJsonResponse = objectMapper.writeValueAsString(listMenu);
+
+        assertThat(actualJsonResponse).isEqualToIgnoringWhitespace(expectedJsonResponse);
     }
 
     @Test
@@ -119,7 +133,21 @@ class ManagerControllerTest {
     }
 
     @Test
-    void listAllReviewsTest() {
+    void listAllReviewsTest() throws Exception {
+        List<CustomerReview> listCustomerReviews = new ArrayList<>();
+        listCustomerReviews.add(customerReview);
+
+        Mockito.when(managerService.listAllReviews()).thenReturn(listCustomerReviews);
+
+        MvcResult mvcResult = mockMvc.perform(get("http://localhost:8080/api/v1/admins/reviews"))
+                .andExpect(status().isOk()).andReturn();
+
+        String actualJsonResponse = mvcResult.getResponse().getContentAsString();
+        System.out.println(actualJsonResponse);
+
+        String expectedJsonResponse = objectMapper.writeValueAsString(listCustomerReviews);
+
+        assertThat(actualJsonResponse).isEqualToIgnoringWhitespace(expectedJsonResponse);
     }
 
     @Test
