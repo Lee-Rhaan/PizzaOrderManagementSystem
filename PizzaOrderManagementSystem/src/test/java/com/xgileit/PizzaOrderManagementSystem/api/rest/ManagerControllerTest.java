@@ -45,7 +45,7 @@ class ManagerControllerTest {
     @MockBean
     DeliveryPersonRepository deliveryPersonRepository;
 
-    Manager firstManager = new Manager("King", "kingdom@gmail.com",
+    Manager manager = new Manager("King", "kingdom@gmail.com",
             "qwerty", "10111", "CPT");
 
     Customer customer = new Customer("King", "kingdom@gmail.com",
@@ -199,11 +199,39 @@ class ManagerControllerTest {
     }
 
     @Test
-    void listAllCustomersTest() {
+    void listAllCustomersTest() throws Exception {
+        List<Customer> listCustomers = new ArrayList<>();
+        listCustomers.add(customer);
+
+        Mockito.when(managerService.listAllCustomers()).thenReturn(listCustomers);
+
+        MvcResult mvcResult = mockMvc.perform(get("http://localhost:8080/api/v1/admins/customers"))
+                .andExpect(status().isOk()).andReturn();
+
+        String actualJsonResponse = mvcResult.getResponse().getContentAsString();
+        System.out.println(actualJsonResponse);
+
+        String expectedJsonResponse = objectMapper.writeValueAsString(listCustomers);
+
+        assertThat(actualJsonResponse).isEqualToIgnoringWhitespace(expectedJsonResponse);
     }
 
     @Test
-    void listAllManagersTest() {
+    void listAllManagersTest() throws Exception {
+        List<Manager> listManagers = new ArrayList<>();
+        listManagers.add(manager);
+
+        Mockito.when(managerService.listAllManagers()).thenReturn(listManagers);
+
+        MvcResult mvcResult = mockMvc.perform(get("http://localhost:8080/api/v1/admins/managers"))
+                .andExpect(status().isOk()).andReturn();
+
+        String actualJsonResponse = mvcResult.getResponse().getContentAsString();
+        System.out.println(actualJsonResponse);
+
+        String expectedJsonResponse = objectMapper.writeValueAsString(listManagers);
+
+        assertThat(actualJsonResponse).isEqualToIgnoringWhitespace(expectedJsonResponse);
     }
 
     @Test
