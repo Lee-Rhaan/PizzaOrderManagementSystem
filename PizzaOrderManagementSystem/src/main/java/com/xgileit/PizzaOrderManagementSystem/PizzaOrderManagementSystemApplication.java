@@ -20,6 +20,7 @@ public class PizzaOrderManagementSystemApplication {
 	}
 
 
+	/*
 	/**
 	 * They already work at this restaurant, so I won't need to register them. They can just
 	 * log in.
@@ -28,7 +29,7 @@ public class PizzaOrderManagementSystemApplication {
 	 * @param chefRepository
 	 * @param deliveryPersonRepository
 	 * @return
-	 */
+
 	@Bean
 	CommandLineRunner run(ManagerRepository managerRepository, ChefRepository chefRepository,
 						  DeliveryPersonRepository deliveryPersonRepository)
@@ -44,5 +45,7 @@ public class PizzaOrderManagementSystemApplication {
 			deliveryPersonRepository.save(new DeliveryPerson("Bryston", "Bryston@delivery.com", "fast", "07142842", "11 Long Street CT")).setActiveStatus(ActiveStatus.LOGGED_OUT);
 		};
 	}
+
+	 */
 
 }
